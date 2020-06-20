@@ -41,7 +41,7 @@ public class Invoker  {
      */
     public static Map<Command,String> execute(String s) throws IOException {
         Map<Command,String> commandStringMap = new HashMap<>();
-        String name[]=s.split(" ");
+        String name[]=s.split(" ", 2);
         Command command = commands.get(name[0].toLowerCase());
         if (s.equals("")){ System.out.print("$ "); }
        else if (command == null || name.length>2){
