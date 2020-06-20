@@ -54,12 +54,16 @@ public class Invoker  {
        else if(name[0].toLowerCase().equals("exit")){
            commandStringMap.put(command,null);
             ClientSender.send(commandStringMap);
-           command.execute("");
+            command.execute("");
         }
-       else if(name[0].toLowerCase().equals("update_key")||name[0].toLowerCase().equals("insert_key")){
-           String key;
-           if (name.length==2)key=name[1]; else key = null;
-            commandStringMap.put(command,key);
+       else if(name[0].toLowerCase().equals("update")){
+           String ID;
+           if (name.length==2)ID=name[1];
+                else ID = null;
+            if (ID == null ) {
+                System.out.println("Вы не ввели ID для апдейтинга.");
+                return null;}
+            commandStringMap.put(command,ID);
             ClientSender.send(commandStringMap);
             ClientReceiver.receive();
         }
@@ -74,5 +78,5 @@ public class Invoker  {
         return null;
     }
 
-    }
+}
 

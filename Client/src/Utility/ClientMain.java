@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class ClientMain {
     public static boolean work = true; // переменная, отвечающая за выход из программы. Как только она станет false, программа завершается
-
+    public static BufferedReader reader = null;
     public static void main(String[] args) throws IOException {
 
         Add add = new Add();
@@ -39,7 +39,7 @@ public class ClientMain {
         Sort sort = new Sort();
         Update update = new Update();
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        reader = new BufferedReader(new InputStreamReader(System.in));
                 DatagramSocket ds = new DatagramSocket();
                 ClientReceiver.sock = ds ;
                 ClientReceiver.clientport = ds.getLocalPort();

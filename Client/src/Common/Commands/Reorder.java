@@ -1,9 +1,5 @@
 package Common.Commands;
 import Common.*;
-//import Utility.ServerMain;
-
-import java.util.Collections;
-
 /**
  * Команда "ПЕРЕВЁРТЫШ"
  */
@@ -16,7 +12,6 @@ public class Reorder implements Command {
      */
     @Override
     public  void execute (String S) {
-        //Collections.reverse(ServerMain.c.Routes);
  }
 
     @Override

@@ -1,8 +1,5 @@
 package Common.Commands;
 import Common.*;
-import Routes.Route;
-//import Utility.ServerMain;
-
 /**
  * Команда "ГЛЯДИ! "
  */
@@ -15,14 +12,6 @@ public class Show implements Command {
      */
     @Override
     public  void execute (String S) {
-//        if (ServerMain.c.Routes.size() == 0) {
-//            System.out.println("Коллекция пуста, милорд");
-//        } else {
-//
-//            for (Route r : ServerMain.c.Routes) {
-//                System.out.println("  " + r.toString());
-//            }
-//        }
     }
     @Override
     public String getInfo(){

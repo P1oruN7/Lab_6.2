@@ -1,6 +1,5 @@
 package Common.Commands;
 import Common.*;
-//import Utility.ServerMain;
 
 /**
  * Команда "ЧИСТИЛЬЩИК "
@@ -14,7 +13,6 @@ public class Clear implements Command  {
      */
     @Override
     public  void execute(String s) {
-       // ServerMain.c.Routes.clear();
     }
 
 

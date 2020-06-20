@@ -15,9 +15,6 @@ public class Info implements Command {
      */
     @Override
     public  void execute(String s) {
-//        System.out.println("Коллекция представляет собой: " + ServerMain.c.Routes.getClass().getName());
-//        System.out.println("В коллекции: " + ServerMain.c.Routes.size()+ " элементов");
-//        System.out.println("Коллеция была создана: " + ServerMain.c.getInitializationDate());
     }
     @Override
     public String getInfo() {
