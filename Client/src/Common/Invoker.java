@@ -1,9 +1,7 @@
 package Common;
 
-import Common.Command;
 import Utility.ClientReceiver;
 import Utility.ClientSender;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +14,6 @@ public class Invoker  {
     private static Map<String, Command> commands = new TreeMap<>();
     /**
      * Regist.
-     *
      * @param name    the name
      * @param command the command
      */
@@ -41,7 +38,7 @@ public class Invoker  {
      */
     public static Map<Command,String> execute(String s) throws IOException {
         Map<Command,String> commandStringMap = new HashMap<>();
-        String name[]=s.split(" ", 2);
+        String name[]=s.split(" ",2);
         Command command = commands.get(name[0].toLowerCase());
         if (s.equals("")){ System.out.print("$ "); }
        else if (command == null || name.length>2){
@@ -50,6 +47,10 @@ public class Invoker  {
        }
        else if (name[0].toLowerCase().equals("help")) {
         command.execute("");
+        }
+        else if (name[0].toLowerCase().equals("add")) {
+            commandStringMap.put(command, Common.Commands.Add.makeString());
+            return commandStringMap;
         }
        else if(name[0].toLowerCase().equals("exit")){
            commandStringMap.put(command,null);
@@ -77,6 +78,5 @@ public class Invoker  {
         }
         return null;
     }
-
 }
 
