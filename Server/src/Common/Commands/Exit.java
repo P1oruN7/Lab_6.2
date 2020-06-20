@@ -10,7 +10,7 @@ public class Exit implements Command  {
      */
     @Override
     public void execute(String s){
-        System.out.println("\n Сервер завершает свою работу.");
+       // System.out.println("\n Сервер завершает свою работу.");
     }
     @Override
     public String getInfo() {

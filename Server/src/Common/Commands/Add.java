@@ -2,6 +2,8 @@ package Common.Commands;
 import Common.*;
 import Readers.*;
 import Routes.*;
+import Utility.ServerMain;
+import Utility.ServerSender;
 
 import java.io.IOException;
 
@@ -20,16 +22,36 @@ public class Add implements Command {
      * Метод для добавления новых элементов в коллекцию
      */
     @Override
-    public  void execute(String s) throws IOException {
-//        Route route = new Route();
-//        route.setId(c.generateUniqueID());
+    public  void execute(String string) throws IOException {
+//        0 - name
+//        1 - Coordinate X
+//        2 - Coordinate Y
+//        3 - Location from X
+//        4 - Location from Y
+//        5 - Location from name
+//        6 - Location to X
+//        7 - Location to Y
+//        8 - Location to name
+//        9 - distance
+        String [] s = string.split(""); //тут надо пробел, но с ним не робит
+        Route route = new Route();
+        route.setId(ServerMain.c.generateUniqueID());
+        route.setCreationDate(java.time.LocalDate.now());
+        route.setName(s[0]);
+        route.setCoordinates(new Coordinates(Integer.parseInt(s[1]), Float.parseFloat(s[2])));
+        route.setFrom(new Location(Long.parseLong(s[3]), Double.parseDouble(s[4]), s[5]));
+        route.setTo(new Location(Long.parseLong(s[6]), Double.parseDouble(s[7]), s[8]));
+        route.setDistance(Float.parseFloat(s[9]));
+        ServerMain.c.Routes.add(route);
+        ServerSender.send("Объект был добавлен в коллекцию.",0);
+
+
 //        System.out.println("Давайте попробуем добавить элемент.");
 //        while (!Add.hasName) addName(reader, c, route);
 //        while (!Add.hasCoordinates) addCoordinates(reader, c, route);
 //        while (!Add.hasFrom) addFrom(reader, c, route);
 //        while (!Add.hasTo) addTo(reader, c, route);
 //        while (!Add.hasDist) addDist(reader, c, route);
-//        route.setCreationDate(java.time.LocalDate.now());
 //        c.Routes.add(route);
 //        System.out.println("Успех!");
 //        hasName = false;

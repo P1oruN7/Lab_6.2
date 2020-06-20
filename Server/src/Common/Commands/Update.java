@@ -4,6 +4,7 @@ import Readers.*;
 import Routes.Coordinates;
 import Routes.Location;
 import Routes.Route;
+import Utility.ServerSender;
 
 import java.io.IOException;
 
@@ -21,7 +22,9 @@ public class Update implements Command {
      * @throws IOException
      */
     @Override
-        public  void execute (String S) throws IOException {
+        public  void execute (String s) throws IOException {
+        //qweqweqw
+        ServerSender.send(s,0);
 //                if (s2==null | s2.equals("")) {
 //                        System.out.println("кажется вы забыли ввести айди");
 //                        return;
