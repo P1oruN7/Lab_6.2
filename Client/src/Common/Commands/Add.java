@@ -1,8 +1,6 @@
 package Common.Commands;
 import Common.*;
 import Readers.*;
-import Routes.*;
-
 import java.io.IOException;
 
 /**
@@ -16,113 +14,125 @@ public class Add implements Command {
     static boolean hasTo = false; // показывает, было ли добавлено поле to
     static boolean hasDist = false; // показывает, было ли добавлено поле distance
 
+    static String name = null;
+    static String coordinateX = null;
+    static String coordinateY = null;
+    static String LocationFromX = null;
+    static String LocationFromY = null;
+    static String LocationFromName = null;
+    static String LocationToX = null;
+    static String LocationToY = null;
+    static String LocationToName = null;
+    static String distance = null;
+
     public Add(){
         Invoker.regist("add",this);
     }
 
-
+    private static final long serialVersionUID = 6529685098267757690L;
 
     /**
      * Метод для добавления новых элементов в коллекцию
      */
     @Override
-    public  void execute(String s) throws IOException {
-//        Route route = new Route();
-//        route.setId(c.generateUniqueID());
-//        System.out.println("Давайте попробуем добавить элемент.");
-//        while (!Add.hasName) addName(reader, c, route);
-//        while (!Add.hasCoordinates) addCoordinates(reader, c, route);
-//        while (!Add.hasFrom) addFrom(reader, c, route);
-//        while (!Add.hasTo) addTo(reader, c, route);
-//        while (!Add.hasDist) addDist(reader, c, route);
-//        route.setCreationDate(java.time.LocalDate.now());
-//        c.Routes.add(route);
-//        System.out.println("Успех!");
-//        hasName = false;
-//        hasCoordinates = false;
-//        hasFrom = false;
-//        hasTo = false;
-//        hasDist = false;
+    public void execute(String s) { }
+
+    public static String makeString () throws IOException{
+        while (!hasName) addName();
+        while (!hasCoordinates) addCoordinates();
+        while (!hasFrom) addFrom();
+        while (!hasTo) addTo();
+        while (!hasDist) addDist();
+        String s = name + " " + coordinateX + " " + coordinateY + " " + LocationFromX + " " + LocationFromY + " " + LocationFromName + " " +
+                LocationToX + " " + LocationToY + " " + LocationToName + " " + distance;
+        boolean hasName = false;
+        boolean hasCoordinates = false;
+        boolean hasFrom = false;
+        boolean hasTo = false;
+        boolean hasDist = false;
+        Add.name = null;
+        Add.coordinateX = null;
+        Add.coordinateY = null;
+        Add.LocationFromX = null;
+        Add.LocationFromY = null;
+        Add.LocationFromName = null;
+        Add.LocationToX = null;
+        Add.LocationToY = null;
+        Add.LocationToName = null;
+        Add.distance = null;
+
+        return s;
     }
 
     /**
      * Метод добавления имени в элемент
      *
-     * @param reader объект - считыватель
-     * @param c      коллекция
-     * @param route  объект
      */
-    protected static void addName(Reader reader, Collection c, Route route) throws IOException {
+    protected static void addName() throws IOException {
         System.out.print( "\n" + "Как вы хотите, чтобы его звали?  ");
-        String name = reader.getLine()+"";
+        String name = Utility.ClientMain.reader.readLine()+"";
         if (name.equals("") ) {
             System.out.println("Пустая строка ни к чему не приведёт. Пока ты смотришь в пустую строку, пустая строка смотрит в тебя...");
             return;
         }
-        route.setName(name);
-        Add.hasName = true;
+        Add.name = name;
+        hasName = true;
     }
 
     /**
      * Метод добавления координат в элемент
      *
-     * @param reader объект - считыватель
-     * @param c      коллекция
-     * @param route  объект
      */
-    protected static void addCoordinates(Reader reader, Collection c, Route route) throws IOException {
+    protected static void addCoordinates() throws IOException {
         System.out.print("\n" + "Координаты, пожалуйста." + "\n" + "int X = ");
-        String s = reader.getLine()+"";
+        String s = Utility.ClientMain.reader.readLine()+"";
         if (s.equals("") ) {
             System.out.println("Введена пустая строка. Не надо так.");
             return;
         }
-        int coordinateX;
+        Integer coordinateX;
         try {
             coordinateX = Checker.intChecker(s);
         } catch (NullPointerException e) {
             System.out.println("Неправильный тип. Coordinate X должно быть типа int." + "\n Попробуем ещё разок!");
             return;
         }
-        if (coordinateX <= -836) {
+        if ((int)coordinateX <= -836) {
             System.out.println("Coordinate x должно быть больше -836");
             return;
         }
 
         System.out.print("float Y = ");
-        float coordinateY;
+        Float coordinateY;
         try {
-            coordinateY = Checker.floatChecker(reader.getLine());
+            coordinateY = Checker.floatChecker(Utility.ClientMain.reader.readLine());
         } catch (NullPointerException e) {
             System.out.println("Неправильный тип. Coordinate Y должно быть типа float" + "\n Попробуем ещё разок!");
             return;
         }
-        if (coordinateY >= 840) {
+        if ((float)coordinateY >= 840 ) {
             System.out.println("Coordinate y должно быть меньше 840");
             return;
         }
-
-        route.setCoordinates(new Coordinates(coordinateX, coordinateY));
-        Add.hasCoordinates = true;
+        Add.coordinateX = coordinateX.toString();
+        Add.coordinateY = coordinateY.toString();
+        hasCoordinates = true;
     }
 
     /**
      * Метод добавления поля from в элемент
      *
-     * @param reader объект - считыватель
-     * @param c      коллекция
-     * @param route  объект
      */
-    protected static void addFrom(Reader reader, Collection c, Route route) throws IOException {
+    protected static void addFrom() throws IOException {
         System.out.print("\n" + "Откуда? (from)" + "\n" + "long x = ");
 
-        String s = reader.getLine()+"";
+        String s = Utility.ClientMain.reader.readLine()+"";
         if (s.equals("") ) {
             System.out.println("LocationFrom = null.");
-            Add.hasFrom = true;
+            hasFrom = true;
             return;
         }
-        long locationFromX;
+        Long locationFromX;
         try {
             locationFromX = Checker.longChecker(s);
         } catch (NullPointerException e) {
@@ -130,13 +140,12 @@ public class Add implements Command {
             return;
         }
 
-
         System.out.print("double y = ");
-        double locationFromY;
-        s = reader.getLine()+"";
+        Double locationFromY;
+        s =Utility.ClientMain.reader.readLine()+"";
         if (s.equals("") ) {
             System.out.println("LocationFrom = null.");
-            Add.hasFrom = true;
+            hasFrom = true;
             return;
         }
         try {
@@ -147,32 +156,30 @@ public class Add implements Command {
         }
 
         System.out.print("Имя откуда:  ");
-        String locationFromName = reader.getLine()+"";
+        String locationFromName = Utility.ClientMain.reader.readLine()+"";
         if (locationFromName.equals("")) {
             System.out.println("LocationFrom = null.");
-            Add.hasFrom = true;
+            hasFrom = true;
             return;
         }
-        route.setFrom(new Location(locationFromX, locationFromY, locationFromName));
-        Add.hasFrom = true;
+        Add.LocationFromX = locationFromX.toString();
+        Add.LocationFromY = locationFromY.toString();
+        Add.LocationFromName = locationFromName;
+        hasFrom = true;
     }
-
 
     /**
      * Метод добавления поля to в элемент
      *
-     * @param reader объект - считыватель
-     * @param c      коллекция
-     * @param route  объект
      */
-    protected static void addTo(Reader reader, Collection c, Route route) throws IOException {
+    protected static void addTo() throws IOException {
         System.out.print("\n" + "Куда? (to)" + "\n" + "long x = ");
-        String s = reader.getLine()+"";
+        String s = Utility.ClientMain.reader.readLine()+"";
         if (s.equals("") ) {
             System.out.println("Введена пустая строка. Не надо так.");
             return;
         }
-        long locationToX;
+        Long locationToX;
         try {
             locationToX = Checker.longChecker(s);
         } catch (NullPointerException e) {
@@ -181,41 +188,40 @@ public class Add implements Command {
         }
 
         System.out.print("double y = ");
-        double locationToY;
+        Double locationToY;
         try {
-            locationToY = Checker.doubleChecker(reader.getLine());
+            locationToY = Checker.doubleChecker(Utility.ClientMain.reader.readLine());
         } catch (NullPointerException e) {
             System.out.println("Неправильный тип. location To (Y) должно быть типа double." + "\n Попробуем ещё разок!");
             return;
         }
 
         System.out.print("Имя куда:  ");
-        String locationToName = reader.getLine()+"";
+        String locationToName = Utility.ClientMain.reader.readLine()+"";
         if (locationToName.equals("") ) {
             System.out.println("Пустая строка ни к чему не приведёт. Пока ты смотришь в пустую строку, пустая строка смотрит в тебя...");
             return;
         }
+        Add.LocationToX = locationToX.toString();
+        Add.LocationToY = locationToY.toString();
+        Add.LocationToName = locationToName;
+        hasTo = true;
 
-        route.setTo(new Location(locationToX, locationToY, locationToName));
-        Add.hasTo = true;
     }
 
     /**
      * Метод добавления поля distance в элемент
      *
-     * @param reader объект - считыватель
-     * @param c      коллекция
-     * @param route  объект
      */
-    protected static void addDist(Reader reader, Collection c, Route route) throws IOException {
+    protected static void addDist() throws IOException {
         System.out.print("\n" + "Давай посмотрим, что у нас там с Distance. (float)  ");
-        String s = reader.getLine()+"";
+        String s = Utility.ClientMain.reader.readLine()+"";
         if (s.equals("")) {
             System.out.println("Теперь distance = null");
-            Add.hasDist = true;
+            hasDist = true;
             return;
         }
-        float distance;
+        Float distance;
         try {
             distance = Checker.floatChecker(s);
         } catch (NullPointerException e) {
@@ -226,8 +232,8 @@ public class Add implements Command {
             System.out.println("Значение Distance должно быть больше 1");
             return;
         }
-        route.setDistance(distance);
-        Add.hasDist = true;
+        Add.distance = distance.toString();
+        hasDist = true;
     }
     @Override
     public String getInfo() {
