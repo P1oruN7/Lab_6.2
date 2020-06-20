@@ -33,7 +33,7 @@ public class Add implements Command {
 //        7 - Location to Y
 //        8 - Location to name
 //        9 - distance
-        String [] s = string.split(""); //тут надо пробел, но с ним не робит
+        String [] s = string.split(" "); 
         Route route = new Route();
         route.setId(ServerMain.c.generateUniqueID());
         route.setCreationDate(java.time.LocalDate.now());
