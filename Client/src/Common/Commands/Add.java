@@ -45,11 +45,11 @@ public class Add implements Command {
         while (!hasDist) addDist();
         String s = name + " " + coordinateX + " " + coordinateY + " " + LocationFromX + " " + LocationFromY + " " + LocationFromName + " " +
                 LocationToX + " " + LocationToY + " " + LocationToName + " " + distance;
-        boolean hasName = false;
-        boolean hasCoordinates = false;
-        boolean hasFrom = false;
-        boolean hasTo = false;
-        boolean hasDist = false;
+        hasName = false;
+        hasCoordinates = false;
+        hasFrom = false;
+        hasTo = false;
+        hasDist = false;
         Add.name = null;
         Add.coordinateX = null;
         Add.coordinateY = null;
