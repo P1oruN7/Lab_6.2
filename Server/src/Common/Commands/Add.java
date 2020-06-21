@@ -4,7 +4,6 @@ import Common.*;
 import Routes.*;
 import Utility.ServerMain;
 import Utility.ServerSender;
-import java.io.IOException;
 
 /**
  * Команда "Добавить-ка ещё!"
@@ -22,7 +21,7 @@ public class Add implements Command {
      * Метод для добавления новых элементов в коллекцию
      */
     @Override
-    public  void execute(String string) throws IOException {
+    public  void execute(String string) {
 //        0 - name
 //        1 - Coordinate X
 //        2 - Coordinate Y
@@ -39,13 +38,11 @@ public class Add implements Command {
         route.setCreationDate(java.time.LocalDate.now());
         route.setName(s[0]);
         route.setCoordinates(new Coordinates(Integer.parseInt(s[1]), Float.parseFloat(s[2])));
-        route.setFrom(new Location(Long.parseLong(s[3]), Double.parseDouble(s[4]), s[5]));
+        if (!s[3].equals("null") ) route.setFrom(new Location(Long.parseLong(s[3]), Double.parseDouble(s[4]), s[5]));
         route.setTo(new Location(Long.parseLong(s[6]), Double.parseDouble(s[7]), s[8]));
-        route.setDistance(Float.parseFloat(s[9]));
+        if (!s[9].equals("null") )route.setDistance(Float.parseFloat(s[9]));
         ServerMain.c.Routes.add(route);
         ServerSender.send("Объект был добавлен в коллекцию.",0);
-
-
     }
 
     public static String makeString () {
