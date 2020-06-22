@@ -8,7 +8,7 @@ public class Draw implements Command {
     public Draw(){
         Invoker.regist("draw",this);
     }
-    
+
     @Override
     public String getInfo(){return "draw: нарисовать случайного котика";}
 

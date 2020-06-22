@@ -38,6 +38,7 @@ public class Add implements Command {
     public void execute(String s) { }
 
     public static String makeString () throws IOException{
+
         while (!hasName) addName();
         while (!hasCoordinates) addCoordinates();
         while (!hasFrom) addFrom();
@@ -45,11 +46,11 @@ public class Add implements Command {
         while (!hasDist) addDist();
         String s = name + " " + coordinateX + " " + coordinateY + " " + LocationFromX + " " + LocationFromY + " " + LocationFromName + " " +
                 LocationToX + " " + LocationToY + " " + LocationToName + " " + distance;
-        hasName = false;
-        hasCoordinates = false;
-        hasFrom = false;
-        hasTo = false;
-        hasDist = false;
+         hasName = false;
+         hasCoordinates = false;
+         hasFrom = false;
+         hasTo = false;
+         hasDist = false;
         Add.name = null;
         Add.coordinateX = null;
         Add.coordinateY = null;
