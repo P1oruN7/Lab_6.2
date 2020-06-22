@@ -11,6 +11,7 @@ import java.util.Map;
 public class ClientReceiver {
    public  static DatagramSocket sock;
     public static int clientport;
+    public static Map<String,Integer> answer;
     public static void receive() throws SocketTimeoutException {
         byte[] buffer = new byte[1000];
         try {
@@ -22,13 +23,12 @@ public class ClientReceiver {
             Object obj = objectInputStream.readObject();
             byteArrayInputStream.close();
             objectInputStream.close();
-            Map<String,Integer> answer = (Map<String, Integer>) obj;
+            answer = (Map<String, Integer>) obj;
             if (answer.entrySet().iterator().next().getValue()==0) {
                 System.out.println("Ответ с сервера: "+answer.entrySet().iterator().next().getKey());
             }
             else if (answer.entrySet().iterator().next().getValue() == 1){
                 System.out.println("Ответ с сервера: "+answer.entrySet().iterator().next().getKey());
-                System.out.print("$ ");
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 String s = reader.readLine();
                 ClientSender.send(s);

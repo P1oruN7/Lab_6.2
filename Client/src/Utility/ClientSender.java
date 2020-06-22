@@ -13,7 +13,7 @@ public class ClientSender {
             Map<Integer,Object> map= new HashMap<Integer,Object>();
             DatagramChannel datagramChannel = DatagramChannel.open();
             datagramChannel.bind(null);
-            SocketAddress serverAddress = new InetSocketAddress(InetAddress.getLocalHost(),1489);
+            SocketAddress serverAddress = new InetSocketAddress(InetAddress.getLocalHost(),12345);
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
             map.put(ClientReceiver.clientport,o);
