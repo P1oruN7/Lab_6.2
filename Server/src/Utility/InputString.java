@@ -22,7 +22,7 @@ public class InputString extends Thread {
                 case "exit":
                     System.out.println("Выхожу с сохранением");
                     saveCommand.execute(null);
-                    exit.execute(null);
+                    exit.execute("NotNull");
                     System.out.println("Выход");
                     break;
             }
