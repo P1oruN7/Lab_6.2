@@ -13,70 +13,65 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * The type Invoker.
+ * Класс - сортировщик
  */
-public class Invoker  {
+public class Invoker {
     private static Map<String, Command> commands = new TreeMap<>();
+
     /**
-     * Regist.
-     * @param name    the name
-     * @param command the command
+     * Регистрация команды
+     *
+     * @param name    иня
+     * @param command собсна команда
      */
     public static void regist(String name, Command command) {
         commands.put(name, command);
     }
 
     /**
-     * Get command collection map.
+     * Получить коллекцию команд
      *
-     * @return the map
+     * @return  map
      */
-    public static Map<String,Command> getCommandCollection(){
+    public static Map<String, Command> getCommandCollection() {
         return commands;
     }
 
     /**
-     * Execute.
+     * Исполнить
      *
-     * @param s the  getting string.
-     * @throws IOException the io exception
+     * @param s строчечка
+     * @throws IOException ошибочка
      */
-    public static Map<Command,String> execute(String s) throws IOException {
-        Map<Command,String> commandStringMap = new HashMap<>();
-        String name[]=s.split(" ",2);
+    public static Map<Command, String> execute(String s) throws IOException {
+        Map<Command, String> commandStringMap = new HashMap<>();
+        String name[] = s.split(" ", 2);
         Command command = commands.get(name[0].toLowerCase());
-        if (s.equals("")){
+        if (s.equals("")) {
             System.out.println("Пустая строка проигнорирована.");
-        }
-       else if (command == null || name.length>2){
+        } else if (command == null || name.length > 2) {
             System.out.println("Такой команды не существует,попробуйте другую. Для справки введите \"help\"");
             return null;
-       }
-       else if (name[0].toLowerCase().equals("help")) {
+        } else if (name[0].toLowerCase().equals("help")) {
             History.addInArray(name[0]);
-        command.execute("");
-        }
-        else if (name[0].toLowerCase().equals("history")) {
+            command.execute("");
+        } else if (name[0].toLowerCase().equals("history")) {
             command.execute("");
             History.addInArray(name[0]);
-        }
-        else if (name[0].toLowerCase().equals("execute_script")) {
+        } else if (name[0].toLowerCase().equals("execute_script")) {
             History.addInArray(name[0]);
             command.execute(name[1]);
-        }
-        else if (name[0].toLowerCase().equals("add")) {
+        } else if (name[0].toLowerCase().equals("add")) {
             History.addInArray(name[0]);
             String string = Common.Commands.Add.makeString();
             commandStringMap.put(command, string);
             return commandStringMap;
-        }
-       else if(name[0].toLowerCase().equals("exit")){
+        } else if (name[0].toLowerCase().equals("exit")) {
             History.addInArray(name[0]);
-           commandStringMap.put(command,null);
+            commandStringMap.put(command, null);
             ClientSender.send(commandStringMap);
             command.execute("");
-        }
-       else if(name[0].toLowerCase().equals("update")) {
+        } else if (name[0].toLowerCase().equals("update")) {
             History.addInArray(name[0]);
             String ID;
             if (name.length == 2) ID = name[1].trim();
@@ -104,15 +99,13 @@ public class Invoker  {
                 }
                 ClientReceiver.receive();
             }
-        }
-        else if (name.length == 1){
+        } else if (name.length == 1) {
             History.addInArray(name[0]);
-            commandStringMap.put(command,null);
+            commandStringMap.put(command, null);
             return commandStringMap;
-        }
-        else if (name.length == 2){
+        } else if (name.length == 2) {
             History.addInArray(name[0]);
-            commandStringMap.put(command,name[1]);
+            commandStringMap.put(command, name[1]);
             return commandStringMap;
         }
         return null;
