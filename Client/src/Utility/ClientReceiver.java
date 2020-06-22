@@ -13,10 +13,10 @@ public class ClientReceiver {
     public static int clientport;
     public static Map<String,Integer> answer;
     public static void receive() throws SocketTimeoutException {
-        byte[] buffer = new byte[1000];
+        byte[] buffer = new byte[1000000];
         try {
             DatagramPacket reply = new DatagramPacket(buffer,buffer.length);
-            sock.setSoTimeout(2500);
+            sock.setSoTimeout(5000);
             sock.receive(reply);
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(reply.getData());
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
