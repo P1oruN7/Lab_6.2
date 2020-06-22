@@ -1,6 +1,8 @@
 package Common.Commands;
+
 import Common.*;
 import Readers.*;
+
 import java.io.IOException;
 
 /**
@@ -25,8 +27,8 @@ public class Add implements Command {
     static String LocationToName = null;
     static String distance = null;
 
-    public Add(){
-        Invoker.regist("add",this);
+    public Add() {
+        Invoker.regist("add", this);
     }
 
     private static final long serialVersionUID = 6529685098267757690L;
@@ -35,9 +37,16 @@ public class Add implements Command {
      * Метод для добавления новых элементов в коллекцию
      */
     @Override
-    public void execute(String s) { }
+    public void execute(String s) {
+    }
 
-    public static String makeString () throws IOException{
+
+    /**
+     * Метод для создания строки
+     *
+     * @return строка
+     */
+    public static String makeString() throws IOException {
 
         while (!hasName) addName();
         while (!hasCoordinates) addCoordinates();
@@ -46,11 +55,11 @@ public class Add implements Command {
         while (!hasDist) addDist();
         String s = name + " " + coordinateX + " " + coordinateY + " " + LocationFromX + " " + LocationFromY + " " + LocationFromName + " " +
                 LocationToX + " " + LocationToY + " " + LocationToName + " " + distance;
-         hasName = false;
-         hasCoordinates = false;
-         hasFrom = false;
-         hasTo = false;
-         hasDist = false;
+        hasName = false;
+        hasCoordinates = false;
+        hasFrom = false;
+        hasTo = false;
+        hasDist = false;
         Add.name = null;
         Add.coordinateX = null;
         Add.coordinateY = null;
@@ -67,12 +76,11 @@ public class Add implements Command {
 
     /**
      * Метод добавления имени в элемент
-     *
      */
     protected static void addName() throws IOException {
-        System.out.print( "\n" + "Как вы хотите, чтобы его звали?  ");
-        String name = Utility.ClientMain.reader.readLine()+"";
-        if (name.equals("") ) {
+        System.out.print("\n" + "Как вы хотите, чтобы его звали?  ");
+        String name = Utility.ClientMain.reader.readLine() + "";
+        if (name.equals("")) {
             System.out.println("Пустая строка ни к чему не приведёт. Пока ты смотришь в пустую строку, пустая строка смотрит в тебя...");
             return;
         }
@@ -82,12 +90,11 @@ public class Add implements Command {
 
     /**
      * Метод добавления координат в элемент
-     *
      */
     protected static void addCoordinates() throws IOException {
         System.out.print("\n" + "Координаты, пожалуйста." + "\n" + "int X = ");
-        String s = Utility.ClientMain.reader.readLine()+"";
-        if (s.equals("") ) {
+        String s = Utility.ClientMain.reader.readLine() + "";
+        if (s.equals("")) {
             System.out.println("Введена пустая строка. Не надо так.");
             return;
         }
@@ -98,7 +105,7 @@ public class Add implements Command {
             System.out.println("Неправильный тип. Coordinate X должно быть типа int." + "\n Попробуем ещё разок!");
             return;
         }
-        if ((int)coordinateX <= -836) {
+        if ((int) coordinateX <= -836) {
             System.out.println("Coordinate x должно быть больше -836");
             return;
         }
@@ -111,7 +118,7 @@ public class Add implements Command {
             System.out.println("Неправильный тип. Coordinate Y должно быть типа float" + "\n Попробуем ещё разок!");
             return;
         }
-        if ((float)coordinateY >= 840 ) {
+        if ((float) coordinateY >= 840) {
             System.out.println("Coordinate y должно быть меньше 840");
             return;
         }
@@ -122,13 +129,12 @@ public class Add implements Command {
 
     /**
      * Метод добавления поля from в элемент
-     *
      */
     protected static void addFrom() throws IOException {
         System.out.print("\n" + "Откуда? (from)" + "\n" + "long x = ");
 
-        String s = Utility.ClientMain.reader.readLine()+"";
-        if (s.equals("") ) {
+        String s = Utility.ClientMain.reader.readLine() + "";
+        if (s.equals("")) {
             System.out.println("LocationFrom = null.");
             hasFrom = true;
             return;
@@ -143,8 +149,8 @@ public class Add implements Command {
 
         System.out.print("double y = ");
         Double locationFromY;
-        s =Utility.ClientMain.reader.readLine()+"";
-        if (s.equals("") ) {
+        s = Utility.ClientMain.reader.readLine() + "";
+        if (s.equals("")) {
             System.out.println("LocationFrom = null.");
             hasFrom = true;
             return;
@@ -157,7 +163,7 @@ public class Add implements Command {
         }
 
         System.out.print("Имя откуда:  ");
-        String locationFromName = Utility.ClientMain.reader.readLine()+"";
+        String locationFromName = Utility.ClientMain.reader.readLine() + "";
         if (locationFromName.equals("")) {
             System.out.println("LocationFrom = null.");
             hasFrom = true;
@@ -171,12 +177,11 @@ public class Add implements Command {
 
     /**
      * Метод добавления поля to в элемент
-     *
      */
     protected static void addTo() throws IOException {
         System.out.print("\n" + "Куда? (to)" + "\n" + "long x = ");
-        String s = Utility.ClientMain.reader.readLine()+"";
-        if (s.equals("") ) {
+        String s = Utility.ClientMain.reader.readLine() + "";
+        if (s.equals("")) {
             System.out.println("Введена пустая строка. Не надо так.");
             return;
         }
@@ -198,8 +203,8 @@ public class Add implements Command {
         }
 
         System.out.print("Имя куда:  ");
-        String locationToName = Utility.ClientMain.reader.readLine()+"";
-        if (locationToName.equals("") ) {
+        String locationToName = Utility.ClientMain.reader.readLine() + "";
+        if (locationToName.equals("")) {
             System.out.println("Пустая строка ни к чему не приведёт. Пока ты смотришь в пустую строку, пустая строка смотрит в тебя...");
             return;
         }
@@ -212,11 +217,10 @@ public class Add implements Command {
 
     /**
      * Метод добавления поля distance в элемент
-     *
      */
     protected static void addDist() throws IOException {
         System.out.print("\n" + "Давай посмотрим, что у нас там с Distance. (float)  ");
-        String s = Utility.ClientMain.reader.readLine()+"";
+        String s = Utility.ClientMain.reader.readLine() + "";
         if (s.equals("")) {
             System.out.println("Теперь distance = null");
             hasDist = true;
@@ -236,29 +240,29 @@ public class Add implements Command {
         Add.distance = distance.toString();
         hasDist = true;
     }
+
     @Override
     public String getInfo() {
         return "add {element} : добавить новый элемент в коллекцию";
     }
 
 
-
-
-
-
-
-
-
-    public static String makeString (String [] s) throws IOException{
+    /**
+     * Метод для создания строки
+     *
+     * @param s массив строчек
+     * @return строка
+     */
+    public static String makeString(String[] s){
         //String [] s = s1.split(" ");
         while (!hasName) addName(s[0]);
         System.out.println("name = " + name);
         while (!hasCoordinates) addCoordinates(s[1], s[2]);
         System.out.println("coordinate X = " + coordinateX + "\ncoordinate Y = " + coordinateY);
         while (!hasFrom) addFrom(s[3], s[4], s[5]);
-        System.out.println("Location From X = " + LocationFromX + "\nLocation From Y = " + LocationFromY + "\nLocation From Name = " +LocationFromName);
+        System.out.println("Location From X = " + LocationFromX + "\nLocation From Y = " + LocationFromY + "\nLocation From Name = " + LocationFromName);
         while (!hasTo) addTo(s[6], s[7], s[8]);
-        System.out.println("Location To X = " + LocationToX + "\nLocation To Y = " + LocationToY + "\nLocation To Name = " +LocationToName);
+        System.out.println("Location To X = " + LocationToX + "\nLocation To Y = " + LocationToY + "\nLocation To Name = " + LocationToName);
         while (!hasDist) addDist(s[9]);
         System.out.println("distance = " + distance);
         String s1 = name + " " + coordinateX + " " + coordinateY + " " + LocationFromX + " " + LocationFromY + " " + LocationFromName + " " +
@@ -286,11 +290,11 @@ public class Add implements Command {
     /**
      * Метод добавления имени в элемент
      *
+     * @param s строка
      */
-    protected static void addName(String s) throws IOException {
+    protected static void addName(String s) {
         String name = s;
-        if (name.equals("") ) {
-          //  System.out.println("Пустая строка ни к чему не приведёт. Пока ты смотришь в пустую строку, пустая строка смотрит в тебя...");
+        if (name.equals("")) {
             return;
         }
         Add.name = name;
@@ -300,35 +304,27 @@ public class Add implements Command {
     /**
      * Метод добавления координат в элемент
      *
+     * @param s0 координата X
+     * @param s1 координата Y
      */
-    protected static void addCoordinates(String s0, String s1) throws IOException {
-    //    String [] s = s1.split(" ");
-//        if (s[0].equals("") ) {
-//            System.out.println("Введена пустая строка. Не надо так.");
-//            return;
-//        }
+    protected static void addCoordinates(String s0, String s1) {
+
         Integer coordinateX;
         try {
             coordinateX = Checker.intChecker(s0);
         } catch (NullPointerException e) {
-          //  System.out.println("Неправильный тип. Coordinate X должно быть типа int." + "\n Попробуем ещё разок!");
             return;
         }
-        if ((int)coordinateX <= -836) {
-          //  System.out.println("Coordinate x должно быть больше -836");
+        if ((int) coordinateX <= -836) {
             return;
         }
-
-      //  System.out.print("float Y = ");
         Float coordinateY;
         try {
             coordinateY = Checker.floatChecker(s1);
         } catch (NullPointerException e) {
-          //  System.out.println("Неправильный тип. Coordinate Y должно быть типа float" + "\n Попробуем ещё разок!");
             return;
         }
-        if ((float)coordinateY >= 840 ) {
-           // System.out.println("Coordinate y должно быть меньше 840");
+        if ((float) coordinateY >= 840) {
             return;
         }
         Add.coordinateX = coordinateX.toString();
@@ -339,11 +335,12 @@ public class Add implements Command {
     /**
      * Метод добавления поля from в элемент
      *
+     * @param s0 Loc From X
+     * @param s1 Loc From Y
+     * @param s2 Loc From Name
      */
-    protected static void addFrom(String s0, String s1, String s2)  {
-       // String [] s = s1.split(" ");
-        if (s0.toLowerCase().trim().equals("null") | s0.toLowerCase().trim().equals("") ) {
-          //  System.out.println("LocationFrom = null.");
+    protected static void addFrom(String s0, String s1, String s2) {
+        if (s0.toLowerCase().trim().equals("null") | s0.toLowerCase().trim().equals("")) {
             hasFrom = true;
             return;
         }
@@ -351,24 +348,21 @@ public class Add implements Command {
         try {
             locationFromX = Checker.longChecker(s0);
         } catch (NullPointerException e) {
-            //System.out.println("Неправильный тип. location From (X) должно быть типа long." + "\n Попробуем ещё разок!");
             return;
         }
 
         Double locationFromY;
-        if (s1.toLowerCase().trim().equals("null") | s1.toLowerCase().trim().equals("") ) {
+        if (s1.toLowerCase().trim().equals("null") | s1.toLowerCase().trim().equals("")) {
             hasFrom = true;
             return;
         }
         try {
             locationFromY = Checker.doubleChecker(s1);
         } catch (NullPointerException e) {
-          //  System.out.println("Неправильный тип. location From (Y) должно быть типа double." + "\n Попробуем ещё разок!");
             return;
         }
 
-        if (s2.equals("") ) {
-          //  System.out.println("LocationFrom = null.");
+        if (s2.trim().equals("")) {
             hasFrom = true;
             return;
         }
@@ -381,11 +375,12 @@ public class Add implements Command {
     /**
      * Метод добавления поля to в элемент
      *
+     * @param s0 Loc To X
+     * @param s1 Loc To Y
+     * @param s2 Loc To Name
      */
-    protected static void addTo(String s0, String s1, String s2) throws IOException {
-       // String [] s = s1.split(" ");
-        if (s0.equals("") ) {
-          //  System.out.println("Введена пустая строка. Не надо так.");
+    protected static void addTo(String s0, String s1, String s2) {
+        if (s0.trim().equals("")) {
             return;
         }
         Long locationToX;
@@ -396,19 +391,16 @@ public class Add implements Command {
         }
 
         Double locationToY;
-        if (s1.equals("") ) {
-           // System.out.println("Введена пустая строка. Не надо так.");
+        if (s1.trim().equals("")) {
             return;
         }
         try {
             locationToY = Checker.doubleChecker(s1);
         } catch (NullPointerException e) {
-          //  System.out.println("Неправильный тип. location To (Y) должно быть типа double." + "\n Попробуем ещё разок!");
             return;
         }
 
-        if (s2.equals("") ) {
-         //   System.out.println("Пустая строка ни к чему не приведёт. Пока ты смотришь в пустую строку, пустая строка смотрит в тебя...");
+        if (s2.trim().equals("")) {
             return;
         }
         Add.LocationToX = locationToX.toString();
@@ -421,10 +413,10 @@ public class Add implements Command {
     /**
      * Метод добавления поля distance в элемент
      *
+     * @param s собсна строчечка со значением dist
      */
-    protected static void addDist(String s)   {
+    protected static void addDist(String s) {
         if (s.trim().equals("") | s.toLowerCase().trim().equals("null")) {
-         //   System.out.println("Теперь distance = null");
             hasDist = true;
             return;
         }
@@ -432,11 +424,9 @@ public class Add implements Command {
         try {
             distance = Checker.floatChecker(s);
         } catch (NullPointerException e) {
-          //  System.out.println("Неправильный тип. distance должно быть типа float." + "\n Попробуем ещё разок!");
             return;
         }
         if (!(distance > 1)) {
-           // System.out.println("Значение Distance должно быть больше 1");
             return;
         }
         Add.distance = distance.toString();

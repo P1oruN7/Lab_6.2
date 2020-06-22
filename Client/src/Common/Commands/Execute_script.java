@@ -26,11 +26,13 @@ import java.util.TreeMap;
 
 public class Execute_script implements Command {
 
-    public Execute_script(){
-        Invoker.regist("execute_script",this);
+    public Execute_script() {
+        Invoker.regist("execute_script", this);
     }
+
     protected static ArrayList<String> usedFiles = new ArrayList<>();
     static boolean fileWork = true;
+
     /**
      * Метод для выполнения скрипта
      *
@@ -38,9 +40,9 @@ public class Execute_script implements Command {
      * @return fileWork
      */
 
-    public  void execute(String s2) {
+    public void execute(String s2) {
 
-        if(s2 == null | s2.equals("")){
+        if (s2 == null | s2.equals("")) {
             ConsoleSourceReader consoleSourceReader = new ConsoleSourceReader();
             while (s2 == null | s2.equals("")) {
                 System.out.println("кажется, вы забыли ввести расположение файла. Где он лежит?");
@@ -48,9 +50,9 @@ public class Execute_script implements Command {
             }
             System.out.println("спасибо, но в следующий раз введите его в той же строке, что и команду" + "\n");
         }
-         Map<String, Command> commands = Common.Invoker.getCommandCollection();
-        if (theSameExist(s2)){
-            System.out.println("\n"+"-ать с рекурсией не надо игр-" +"\n");
+        Map<String, Command> commands = Common.Invoker.getCommandCollection();
+        if (theSameExist(s2)) {
+            System.out.println("\n" + "-ать с рекурсией не надо игр-" + "\n");
             System.out.println("Рекурсивное чтение файла было завершено во избежание разрыва пространственно-временного континуума.");
         } else {
             usedFiles.add(s2);
@@ -60,7 +62,7 @@ public class Execute_script implements Command {
                 String line;
                 line = fileSourceReader.getLine();
                 while (fileWork && line != null) {
-                    String [] s = line.split(" ", 2);
+                    String[] s = line.split(" ", 2);
                     System.out.println("Пытаемся выполнить команду \" " + line + " \"");
                     Command command = commands.get(s[0].toLowerCase());
                     if (s[0].toLowerCase().equals("add")) {
@@ -79,7 +81,7 @@ public class Execute_script implements Command {
                                     fileSourceReader.getLine(), // 10 Dist
                             };
                             String string = Common.Commands.Add.makeString(array);
-                            Map<Command,String> commandparamMap  = new HashMap<>();
+                            Map<Command, String> commandparamMap = new HashMap<>();
                             commandparamMap.put(command, string);
                             ClientSender.send(commandparamMap);
                             try {
@@ -93,8 +95,7 @@ public class Execute_script implements Command {
                             return;
                         }
 
-                    }
-                    else if (s[0].toLowerCase().equals("update")){
+                    } else if (s[0].toLowerCase().equals("update")) {
                         History.addInArray(s[0]);
                         String ID;
                         if (s.length == 2) ID = s[1].trim();
@@ -103,7 +104,7 @@ public class Execute_script implements Command {
                             System.out.println("Вы не ввели ID для апдейтинга.");
                             return;
                         }
-                        Map<Command,String> commandparamMap = new HashMap<>();
+                        Map<Command, String> commandparamMap = new HashMap<>();
                         commandparamMap.put(command, ID);
                         ClientSender.send(commandparamMap);
                         ClientReceiver.receive();
@@ -133,11 +134,10 @@ public class Execute_script implements Command {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                          ClientReceiver.receive();
+                            ClientReceiver.receive();
                         }
-                    }
-                    else {
-                        Map<Command,String> commandparamMap = new HashMap<>();
+                    } else {
+                        Map<Command, String> commandparamMap = new HashMap<>();
                         commandparamMap = Invoker.execute(line);
 
                         if (commandparamMap != null) {
@@ -166,11 +166,12 @@ public class Execute_script implements Command {
 
     /**
      * Поиск передаваемого файла среди уже запущенных
+     *
      * @param s2 путь файла
      * @return true - если найден
      */
-    private static boolean theSameExist (String s2){
-        for (String s: usedFiles) if (s.equals(s2)) return true;
+    private static boolean theSameExist(String s2) {
+        for (String s : usedFiles) if (s.equals(s2)) return true;
         return false;
     }
 
