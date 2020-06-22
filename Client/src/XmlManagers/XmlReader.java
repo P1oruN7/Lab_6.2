@@ -2,6 +2,7 @@ package XmlManagers;
 
 import Exceptions.FileNotFoundException;
 import Routes.Collection;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -15,13 +16,14 @@ import java.io.FileReader;
 public class XmlReader {
     /**
      * Метод для получения коллекции из файла xml
+     *
      * @param path путь
      * @return Коллекция  (Collection)
      * @throws java.io.FileNotFoundException
      */
     public static Collection getCollection(String path) throws java.io.FileNotFoundException {
 
-        try{
+        try {
             File input = new File(path);
             if (!input.canRead()) {
                 System.out.println("Невозможно прочитать файл.");
@@ -31,10 +33,10 @@ public class XmlReader {
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
             BufferedReader bufferedReader = new BufferedReader(new FileReader(input));
             return (Collection) unmarshaller.unmarshal(bufferedReader);
-        }catch (JAXBException e){
+        } catch (JAXBException e) {
             System.out.println("Некорректный файл");
             return null;
-        }catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
             return null;
         }

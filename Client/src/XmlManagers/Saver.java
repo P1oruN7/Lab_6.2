@@ -17,10 +17,11 @@ public class Saver {
 
     /**
      * Метод для сохранения коллекции в файл
+     *
      * @param path путь до файла
      * @throws java.io.FileNotFoundException
      */
-    public static void saveCollection( String path) throws java.io.FileNotFoundException {
+    public static void saveCollection(String path) throws java.io.FileNotFoundException {
 
 //        try {
 //            File newCollection = new File(path);
