@@ -1,4 +1,5 @@
 package Common.Commands;
+
 import Common.*;
 import Routes.Route;
 import Utility.ServerMain;
@@ -12,20 +13,21 @@ public class Show implements Command {
      * Метод для отображения всех элементов коллекции
      */
     @Override
-    public  void execute (String S) {
+    public void execute(String S) {
         if (ServerMain.c.Routes.size() == 0) {
-            ServerSender.send("\n\nКоллекция пуста, милорд\n\n",0);
+            ServerSender.send("\n\nКоллекция пуста, милорд\n\n", 0);
         } else {
             String string = "\n";
             for (Route r : ServerMain.c.Routes) {
-               string += "  " + r.toString() + "\n";
+                string += "  " + r.toString() + "\n";
             }
-            ServerSender.send(string,0);
+            ServerSender.send(string, 0);
 
         }
     }
+
     @Override
-    public String getInfo(){
+    public String getInfo() {
         return "show : вывести в стандартный поток вывода все элементы коллекции в строковом представлении";
     }
 }

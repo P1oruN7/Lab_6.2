@@ -1,10 +1,11 @@
 package Common.Commands;
+
 import Common.*;
 
 /**
  * Команда "ВЫХОДА НЕТ"
  */
-public class Exit implements Command  {
+public class Exit implements Command {
     /**
      * Метод для прекращения работы программы
      */
@@ -16,6 +17,7 @@ public class Exit implements Command  {
         }
         System.out.println("Клиент нас покинул. Продолжу сидеть в одиночестве...");
     }
+
     @Override
     public String getInfo() {
         return "exit : завершить программу ";
