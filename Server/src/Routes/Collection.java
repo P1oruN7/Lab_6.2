@@ -28,7 +28,7 @@ public class Collection implements Serializable {
     /**
      * Конструктор коллекии
      */
-    public Collection(){
+    public Collection() {
         this.Routes = new ArrayList<>();
         this.initializationDate = DateGenerator.generateCurrentDate();
     }
@@ -54,6 +54,7 @@ public class Collection implements Serializable {
 
     /**
      * Метод поиска элемента по id
+     *
      * @param id id
      * @return элемент коллекции
      */
@@ -67,6 +68,7 @@ public class Collection implements Serializable {
 
     /**
      * Метод для создания уникального id
+     *
      * @return уникальный id (long)
      */
     public long generateUniqueID() {

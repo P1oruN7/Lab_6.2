@@ -13,15 +13,16 @@ public class Location implements Serializable {
     private Double y; //Поле не может быть null
     private String name; //Поле не может быть null
 
-    public Location(){};
+    public Location() { };
 
     /**
      * Конструктор
-     * @param x Координата x
-     * @param y Координата y
+     *
+     * @param x    Координата x
+     * @param y    Координата y
      * @param name Имя
      */
-    public Location(Long x, Double y,  String name) {
+    public Location(Long x, Double y, String name) {
         this.x = x;
         this.y = y;
         this.name = name;
