@@ -1,14 +1,19 @@
 package Utility;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.rmi.server.ServerNotActiveException;
 import java.util.Map;
 
+/**
+ * Байтики в объектик
+ */
 public class ByteToObject {
+
+    /**
+     * Перевод байтив в объект
+     * @param buf массив байтиков
+     */
     public static Object Cast(byte[] buf) {
         Object obj = null;
         try {
@@ -20,8 +25,8 @@ public class ByteToObject {
                 obj = map.entrySet().iterator().next().getValue();
             } else if (CreateServer.currentClientPort == map.entrySet().iterator().next().getKey()) {
                 obj = map.entrySet().iterator().next().getValue();
-            } else{
-               return ByteToObject.Cast(ServerReceiver.receive());
+            } else {
+                return ByteToObject.Cast(ServerReceiver.receive());
             }
             byteArrayInputStream.close();
             objectInputStream.close();

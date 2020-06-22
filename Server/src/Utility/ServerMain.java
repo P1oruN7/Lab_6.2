@@ -1,18 +1,23 @@
 package Utility;
+
 import Common.*;
 import Common.Commands.*;
-import Utility.*;
 import Routes.Collection;
 import XmlManagers.XmlReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
-import Readers.ConsoleSourceReader;
 
+/**
+ * Главненький
+ */
 public class ServerMain {
     public static Collection c = null;
+
+    /**
+     * psvm
+     * @param args аргументики
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         Add add = new Add();
         Average_of_distance average = new Average_of_distance();
@@ -28,10 +33,8 @@ public class ServerMain {
         Sort sort = new Sort();
         Update update = new Update();
         CreateServer.create();
-       // SaveInFile s = new SaveInFile();
-      //  s.checkForSaveCommand();
         System.out.println("Сервер запущен.");
-      //  ConsoleSourceReader bufferReader = new ConsoleSourceReader();
+        //  ConsoleSourceReader bufferReader = new ConsoleSourceReader();
 //        String path = null;
 //
 //        try{
@@ -64,23 +67,22 @@ public class ServerMain {
         }
     }
 
-    public static void GetCommand (){
+    public static void GetCommand() {
         Map<Command, String> commandStringMap;
         try {
             System.out.println("Жду команду.");
             Object o = ByteToObject.Cast(ServerReceiver.receive());
             commandStringMap = (Map<Command, String>) o;
-            CreateServer.serverIsAvaible=false;
-            System.out.println("Выполняю команду "+commandStringMap.entrySet().iterator().next().getKey().getClass().getName());
+            CreateServer.serverIsAvaible = false;
+            System.out.println("Выполняю команду " + commandStringMap.entrySet().iterator().next().getKey().getClass().getName());
             commandStringMap.entrySet().iterator().next().getKey().execute(commandStringMap.entrySet().iterator().next().getValue());
-            CreateServer.serverIsAvaible=true;
-            if (!commandStringMap.entrySet().iterator().next().getKey().getClass().getName().equals("Common.Commands.Exit")) System.out.println("Команда выполнена! Отправляю результат клиенту с портом "+ CreateServer.currentClientPort+".");
-        }
-        catch (ClassCastException | IOException e){
-            ServerSender.send("Сообщение от Сервера:\"Возникли небольшие неполадки с вашим подключением,но сейчас всё по кайфу,ожидаю команд.\"\n",0);
+            CreateServer.serverIsAvaible = true;
+            if (!commandStringMap.entrySet().iterator().next().getKey().getClass().getName().equals("Common.Commands.Exit"))
+                System.out.println("Команда выполнена! Отправляю результат клиенту с портом " + CreateServer.currentClientPort + ".");
+        } catch (ClassCastException | IOException e) {
+            ServerSender.send("Сообщение от Сервера:\"Возникли небольшие неполадки с вашим подключением,но сейчас всё по кайфу,ожидаю команд.\"\n", 0);
         }
     }
-
 
 
 }
