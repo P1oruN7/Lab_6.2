@@ -8,7 +8,7 @@ public class CreateServer {
     public static int currentClientPort = 0;
     public static DatagramChannel datagramChannel;
     public static void create() throws IOException {
-        SocketAddress it = new InetSocketAddress(InetAddress.getLocalHost(), 1489);
+        SocketAddress it = new InetSocketAddress(InetAddress.getLocalHost(), 12345);
         DatagramChannel dc = DatagramChannel.open();
         dc.configureBlocking(false);
         try {

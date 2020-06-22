@@ -28,10 +28,10 @@ public class ServerMain {
         Sort sort = new Sort();
         Update update = new Update();
         CreateServer.create();
-        SaveInFile s = new SaveInFile();
-        s.checkForSaveCommand();
+       // SaveInFile s = new SaveInFile();
+      //  s.checkForSaveCommand();
         System.out.println("Сервер запущен.");
-        ConsoleSourceReader bufferReader = new ConsoleSourceReader();
+      //  ConsoleSourceReader bufferReader = new ConsoleSourceReader();
 //        String path = null;
 //
 //        try{
@@ -57,13 +57,14 @@ public class ServerMain {
 //
 //
         c = new Collection(); // !!!!
-
+        InputString inputString = new InputString();
+        inputString.start();
         while (true) {
             GetCommand();
         }
     }
 
-    public static void GetCommand(){
+    public static void GetCommand (){
         Map<Command, String> commandStringMap;
         try {
             System.out.println("Жду команду.");

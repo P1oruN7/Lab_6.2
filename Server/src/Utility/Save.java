@@ -18,8 +18,8 @@ public class Save implements Command {
     @Override
     public void execute(String par1) throws IOException {
         SaveInFile saveInFile = new SaveInFile();
-                    saveInFile.Saving(new FileRead().getFilePath());
-                    System.out.println("Коллекция сохранена в изначальный файл");
+        saveInFile.Saving(new FileRead().getFilePath());
+        System.out.println("Коллекция сохранена в изначальный файл");
 
     }
     @Override
