@@ -240,4 +240,206 @@ public class Add implements Command {
     public String getInfo() {
         return "add {element} : добавить новый элемент в коллекцию";
     }
+
+
+
+
+
+
+
+
+
+    public static String makeString (String [] s) throws IOException{
+        //String [] s = s1.split(" ");
+        while (!hasName) addName(s[0]);
+        System.out.println("name = " + name);
+        while (!hasCoordinates) addCoordinates(s[1], s[2]);
+        System.out.println("coordinate X = " + coordinateX + "\ncoordinate Y = " + coordinateY);
+        while (!hasFrom) addFrom(s[3], s[4], s[5]);
+        System.out.println("Location From X = " + LocationFromX + "\nLocation From Y = " + LocationFromY + "\nLocation From Name = " +LocationFromName);
+        while (!hasTo) addTo(s[6], s[7], s[8]);
+        System.out.println("Location To X = " + LocationToX + "\nLocation To Y = " + LocationToY + "\nLocation To Name = " +LocationToName);
+        while (!hasDist) addDist(s[9]);
+        System.out.println("distance = " + distance);
+        String s1 = name + " " + coordinateX + " " + coordinateY + " " + LocationFromX + " " + LocationFromY + " " + LocationFromName + " " +
+                LocationToX + " " + LocationToY + " " + LocationToName + " " + distance;
+        hasName = false;
+        hasCoordinates = false;
+        hasFrom = false;
+        hasTo = false;
+        hasDist = false;
+        Add.name = null;
+        Add.coordinateX = null;
+        Add.coordinateY = null;
+        Add.LocationFromX = null;
+        Add.LocationFromY = null;
+        Add.LocationFromName = null;
+        Add.LocationToX = null;
+        Add.LocationToY = null;
+        Add.LocationToName = null;
+        Add.distance = null;
+
+        return s1;
+    }
+
+
+    /**
+     * Метод добавления имени в элемент
+     *
+     */
+    protected static void addName(String s) throws IOException {
+        String name = s;
+        if (name.equals("") ) {
+          //  System.out.println("Пустая строка ни к чему не приведёт. Пока ты смотришь в пустую строку, пустая строка смотрит в тебя...");
+            return;
+        }
+        Add.name = name;
+        hasName = true;
+    }
+
+    /**
+     * Метод добавления координат в элемент
+     *
+     */
+    protected static void addCoordinates(String s0, String s1) throws IOException {
+    //    String [] s = s1.split(" ");
+//        if (s[0].equals("") ) {
+//            System.out.println("Введена пустая строка. Не надо так.");
+//            return;
+//        }
+        Integer coordinateX;
+        try {
+            coordinateX = Checker.intChecker(s0);
+        } catch (NullPointerException e) {
+          //  System.out.println("Неправильный тип. Coordinate X должно быть типа int." + "\n Попробуем ещё разок!");
+            return;
+        }
+        if ((int)coordinateX <= -836) {
+          //  System.out.println("Coordinate x должно быть больше -836");
+            return;
+        }
+
+      //  System.out.print("float Y = ");
+        Float coordinateY;
+        try {
+            coordinateY = Checker.floatChecker(s1);
+        } catch (NullPointerException e) {
+          //  System.out.println("Неправильный тип. Coordinate Y должно быть типа float" + "\n Попробуем ещё разок!");
+            return;
+        }
+        if ((float)coordinateY >= 840 ) {
+           // System.out.println("Coordinate y должно быть меньше 840");
+            return;
+        }
+        Add.coordinateX = coordinateX.toString();
+        Add.coordinateY = coordinateY.toString();
+        hasCoordinates = true;
+    }
+
+    /**
+     * Метод добавления поля from в элемент
+     *
+     */
+    protected static void addFrom(String s0, String s1, String s2)  {
+       // String [] s = s1.split(" ");
+        if (s0.toLowerCase().trim().equals("null") | s0.toLowerCase().trim().equals("") ) {
+          //  System.out.println("LocationFrom = null.");
+            hasFrom = true;
+            return;
+        }
+        Long locationFromX;
+        try {
+            locationFromX = Checker.longChecker(s0);
+        } catch (NullPointerException e) {
+            //System.out.println("Неправильный тип. location From (X) должно быть типа long." + "\n Попробуем ещё разок!");
+            return;
+        }
+
+        Double locationFromY;
+        if (s1.toLowerCase().trim().equals("null") | s1.toLowerCase().trim().equals("") ) {
+            hasFrom = true;
+            return;
+        }
+        try {
+            locationFromY = Checker.doubleChecker(s1);
+        } catch (NullPointerException e) {
+          //  System.out.println("Неправильный тип. location From (Y) должно быть типа double." + "\n Попробуем ещё разок!");
+            return;
+        }
+
+        if (s2.equals("") ) {
+          //  System.out.println("LocationFrom = null.");
+            hasFrom = true;
+            return;
+        }
+        Add.LocationFromX = locationFromX.toString();
+        Add.LocationFromY = locationFromY.toString();
+        Add.LocationFromName = s2;
+        hasFrom = true;
+    }
+
+    /**
+     * Метод добавления поля to в элемент
+     *
+     */
+    protected static void addTo(String s0, String s1, String s2) throws IOException {
+       // String [] s = s1.split(" ");
+        if (s0.equals("") ) {
+          //  System.out.println("Введена пустая строка. Не надо так.");
+            return;
+        }
+        Long locationToX;
+        try {
+            locationToX = Checker.longChecker(s0);
+        } catch (NullPointerException e) {
+            return;
+        }
+
+        Double locationToY;
+        if (s1.equals("") ) {
+           // System.out.println("Введена пустая строка. Не надо так.");
+            return;
+        }
+        try {
+            locationToY = Checker.doubleChecker(s1);
+        } catch (NullPointerException e) {
+          //  System.out.println("Неправильный тип. location To (Y) должно быть типа double." + "\n Попробуем ещё разок!");
+            return;
+        }
+
+        if (s2.equals("") ) {
+         //   System.out.println("Пустая строка ни к чему не приведёт. Пока ты смотришь в пустую строку, пустая строка смотрит в тебя...");
+            return;
+        }
+        Add.LocationToX = locationToX.toString();
+        Add.LocationToY = locationToY.toString();
+        Add.LocationToName = s2;
+        hasTo = true;
+
+    }
+
+    /**
+     * Метод добавления поля distance в элемент
+     *
+     */
+    protected static void addDist(String s)   {
+        if (s.trim().equals("") | s.toLowerCase().trim().equals("null")) {
+         //   System.out.println("Теперь distance = null");
+            hasDist = true;
+            return;
+        }
+        Float distance;
+        try {
+            distance = Checker.floatChecker(s);
+        } catch (NullPointerException e) {
+          //  System.out.println("Неправильный тип. distance должно быть типа float." + "\n Попробуем ещё разок!");
+            return;
+        }
+        if (!(distance > 1)) {
+           // System.out.println("Значение Distance должно быть больше 1");
+            return;
+        }
+        Add.distance = distance.toString();
+        hasDist = true;
+    }
 }

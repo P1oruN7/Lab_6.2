@@ -14,7 +14,7 @@ public class Exit implements Command  {
     @Override
     public void execute(String s){
         System.out.println("Программа завершает свою работу.");
-        Utility.ClientMain.work = false;
+        System.exit(0);
     }
     @Override
     public String getInfo() {
