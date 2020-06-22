@@ -1,9 +1,5 @@
 package Utility;
 
-import Common.CreatePerson;
-import Common.CreateTicket;
-import Common.Ticket;
-
 import java.io.*;
 import java.net.*;
 import java.util.Map;
@@ -37,16 +33,6 @@ public class ClientReceiver {
             else if (answer.entrySet().iterator().next().getValue() == 2){
                 System.out.println("Ответ с сервера: "+answer.entrySet().iterator().next().getKey());
                 ClientReceiver.receive();
-            } else if (answer.entrySet().iterator().next().getValue() == 3) {
-                CreateTicket ct=new CreateTicket();
-                Ticket ticket = ct.create(Long.parseLong(answer.entrySet().iterator().next().getKey()));
-                ClientSender.send(ticket);
-                ClientReceiver.receive();
-            } else if (answer.entrySet().iterator().next().getValue() == 4){
-                CreatePerson cp = new CreatePerson();
-                Ticket person = cp.create();
-                ClientSender.send(person);
-                ClientReceiver.receive();
             }
         } catch (SocketException e) {
             e.printStackTrace();
@@ -57,6 +43,5 @@ public class ClientReceiver {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 }
