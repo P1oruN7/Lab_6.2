@@ -19,13 +19,13 @@ public class Route implements Comparable<Route>, Serializable {
     private Location to; //Поле не может быть null
     private Float distance; //Поле может быть null, Значение поля должно быть больше 1
 
-    public Route(){};
+    public Route() { };
 
     @Override
     public String toString() {
         return "Route(" +
                 "id = " + id +
-                ", name = " + name  +
+                ", name = " + name +
                 ", coordinates = " + coordinates +
                 ", creationDate = " + creationDate +
                 ", from = " + from +
@@ -72,7 +72,7 @@ public class Route implements Comparable<Route>, Serializable {
     }
 
     @XmlElement
-    public Location getFrom(){
+    public Location getFrom() {
         return from;
     }
 
@@ -81,7 +81,7 @@ public class Route implements Comparable<Route>, Serializable {
     }
 
     @XmlElement
-    public Location getTo(){
+    public Location getTo() {
         return to;
     }
 
@@ -100,9 +100,11 @@ public class Route implements Comparable<Route>, Serializable {
 
     @Override
     public int compareTo(Route r) {
-        if (this.getId() == r.getId()) {return 0;}
-        else if (this.getId()>r.getId()) {return 1;}
-        else return -1;
+        if (this.getId() == r.getId()) {
+            return 0;
+        } else if (this.getId() > r.getId()) {
+            return 1;
+        } else return -1;
 
     }
 }

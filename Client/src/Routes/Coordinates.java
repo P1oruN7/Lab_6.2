@@ -9,15 +9,19 @@ import java.io.Serializable;
  */
 @XmlRootElement
 public class Coordinates implements Serializable {
-    public Coordinates(){};
+    public Coordinates() {
+    }
+
+    ;
 
     /**
      * Конструктор
+     *
      * @param x координата X
      * @param y координата Y
      */
 
-    public Coordinates(int x,  float y) {
+    public Coordinates(int x, float y) {
         this.x = x;
         this.y = y;
     }
@@ -47,7 +51,7 @@ public class Coordinates implements Serializable {
     public String toString() {
         return "Coordinates(" +
                 "x = " + x
-                +  ", y = " + y
+                + ", y = " + y
                 + ')';
     }
 }
