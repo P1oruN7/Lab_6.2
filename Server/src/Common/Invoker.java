@@ -1,55 +1,55 @@
 package Common;
 
 import Utility.ServerSender;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * The type Invoker.
+ * Класс - сортировщик
  */
 public class Invoker {
     private static Map<String, Command> commands = new TreeMap<>();
+
     /**
-     * Regist.
+     * Регистрация команды
      *
-     * @param name    the name
-     * @param command the command
+     * @param name    иня
+     * @param command собсна команда
      */
     public static void regist(String name, Command command) {
         commands.put(name, command);
     }
 
     /**
-     * Get command collection map.
+     * Получить коллекцию команд
      *
-     * @return the map
+     * @return  map
      */
-    public static Map<String, Command> getCommandCollection(){
+    public static Map<String, Command> getCommandCollection() {
         return commands;
     }
 
     /**
-     * Execute.
+     * Исполнить
      *
-     * @param s the  getting string.
-     * @throws IOException the io exception
+     * @param s строчечка
+     * @throws IOException ошибочка
      */
     public static void execute(String s) throws IOException {
-        Map<Command,String> commandStringMap = new HashMap<>();
-        String name[]=s.split(" ",1);
+        Map<Command, String> commandStringMap = new HashMap<>();
+        String name[] = s.split(" ", 1);
         Command command = commands.get(name[0]);
-        if (s.equals("")){ System.out.print("$ "); }
-        else if (name[0].equals("exit")){
-        }
-       else if (command == null || name.length>2){
-            ServerSender.send("Такой команды не существует,попробуйте другую. Для справки введите \"help\"",2);
-       }
-        else if (name.length == 1){
+        if (s.equals("")) {
+            System.out.print("$ ");
+        } else if (name[0].equals("exit")) {
+        } else if (command == null || name.length > 2) {
+            ServerSender.send("Такой команды не существует,попробуйте другую. Для справки введите \"help\"", 2);
+        } else if (name.length == 1) {
             command.execute(null);
-        }
-        else if (name.length == 2){
+        } else if (name.length == 2) {
             command.execute(name[1]);
         }
     }

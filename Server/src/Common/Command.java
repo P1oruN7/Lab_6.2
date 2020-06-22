@@ -4,22 +4,22 @@ import java.io.IOException;
 import java.io.Serializable;
 
 /**
- * The interface Common.Command.
+ * Интерфейс Command
  */
 public interface Command extends Serializable {
     /**
-     * Execute.
-     *Method for all command to execute their possibility
+     * Экзекьюте
+     *
      * @param par1 the par 1
      * @throws IOException the io exception
      */
     abstract public void execute(String par1) throws IOException;
 
     /**
-     * Gets info about any command
+     * Получить немножко информации о команде
      *
-     * @return the info
+     * @return строчечка информации
      */
     abstract public String getInfo();
-    }
+}
 
