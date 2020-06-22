@@ -3,6 +3,7 @@ import Common.*;
 import Readers.*;
 import Routes.Route;
 import Utility.ServerMain;
+import Utility.ServerSender;
 
 /**
  * Команда "УДОЛИ!"
@@ -20,6 +21,7 @@ public class Remove_by_id implements Command {
        long removeId = Checker.longChecker(s);
     Route r = ServerMain.c.searchById(removeId);
     if (r ==null) {System.out.println("похоже элемента с таким айди не существует");
+        ServerSender.send("Элемент успешно удалён из коллекции. Вот.", 0);
         return;
     }
        ServerMain.c.Routes.remove(ServerMain.c.Routes.indexOf(r));
