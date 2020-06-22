@@ -64,6 +64,7 @@ public class Execute_script implements Command {
                     System.out.println("Пытаемся выполнить команду \" " + line + " \"");
                     Command command = commands.get(s[0].toLowerCase());
                     if (s[0].toLowerCase().equals("add")) {
+                        History.addInArray(s[0]);
                         try {
                             String[] array = {
                                     fileSourceReader.getLine(), // 1 Name
@@ -94,6 +95,7 @@ public class Execute_script implements Command {
 
                     }
                     else if (s[0].toLowerCase().equals("update")){
+                        History.addInArray(s[0]);
                         String ID;
                         if (s.length == 2) ID = s[1].trim();
                         else ID = null;
