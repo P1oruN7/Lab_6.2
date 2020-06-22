@@ -14,7 +14,7 @@ public class ServerReceiver {
     public static byte[] receive() {
         try {
             DatagramChannel datagramChannel = CreateServer.datagramChannel;
-            ByteBuffer byteBuffer = ByteBuffer.allocate(10000);
+            ByteBuffer byteBuffer = ByteBuffer.allocate(1000000);
             byte[] bytes = null;
             while(true) {
                 InetSocketAddress socketAddress = (InetSocketAddress) datagramChannel.receive(byteBuffer);
