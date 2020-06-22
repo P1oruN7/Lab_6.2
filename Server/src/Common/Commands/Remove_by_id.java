@@ -28,4 +28,5 @@ public class Remove_by_id implements Command {
     public String getInfo() {
         return "remove_by_id id : удалить элемент из коллекции по его id";
     }
+
 }

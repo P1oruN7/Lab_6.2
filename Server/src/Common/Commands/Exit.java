@@ -10,10 +10,11 @@ public class Exit implements Command  {
      */
     @Override
     public void execute(String s){
-       // System.out.println("\n Сервер завершает свою работу.");
+        System.out.println("\nСервер завершает свою работу.");
+        System.exit(0);
     }
     @Override
     public String getInfo() {
-        return "exit : завершить программу (без сохранения в файл)";
+        return "exit : завершить программу ";
     }
 }
