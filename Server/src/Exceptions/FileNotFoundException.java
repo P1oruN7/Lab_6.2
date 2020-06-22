@@ -5,7 +5,7 @@ package Exceptions;
  */
 public class FileNotFoundException extends java.io.FileNotFoundException {
     @Override
-    public String getMessage(){
-       return "Кажется такого файла там нет";
+    public String getMessage() {
+        return "Кажется такого файла там нет";
     }
- }
+}
