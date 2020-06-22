@@ -9,6 +9,7 @@ public class DateGenerator {
 
     /**
      * Получить актуальную дату
+     *
      * @return LocalDate
      */
     public static LocalDate generateCurrentDate() {
