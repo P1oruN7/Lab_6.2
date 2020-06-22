@@ -44,13 +44,18 @@ public class Invoker  {
         Map<Command,String> commandStringMap = new HashMap<>();
         String name[]=s.split(" ",2);
         Command command = commands.get(name[0].toLowerCase());
-        if (s.equals("")){ System.out.print("$ "); }
+        if (s.equals("")){
+            System.out.println("Пустая строка проигнорирована.");
+        }
        else if (command == null || name.length>2){
             System.out.println("Такой команды не существует,попробуйте другую. Для справки введите \"help\"");
             return null;
        }
        else if (name[0].toLowerCase().equals("help")) {
         command.execute("");
+        }
+        else if (name[0].toLowerCase().equals("execute_script")) {
+            command.execute(name[1]);
         }
         else if (name[0].toLowerCase().equals("add")) {
             String string = Common.Commands.Add.makeString();
@@ -101,3 +106,4 @@ public class Invoker  {
         return null;
     }
 }
+
