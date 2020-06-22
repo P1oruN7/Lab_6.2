@@ -1,8 +1,6 @@
 package Common;
 
-import Utility.CreateServer;
 import Utility.ServerSender;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,25 +38,20 @@ public class Invoker {
      */
     public static void execute(String s) throws IOException {
         Map<Command,String> commandStringMap = new HashMap<>();
-        String name[]=s.split(" ");
+        String name[]=s.split(" ",1);
         Command command = commands.get(name[0]);
         if (s.equals("")){ System.out.print("$ "); }
         else if (name[0].equals("exit")){
-
         }
        else if (command == null || name.length>2){
             ServerSender.send("Такой команды не существует,попробуйте другую. Для справки введите \"help\"",2);
        }
         else if (name.length == 1){
             command.execute(null);
-
         }
         else if (name.length == 2){
             command.execute(name[1]);
-
         }
-
     }
-
-    }
+}
 
