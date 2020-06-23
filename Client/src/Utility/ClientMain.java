@@ -3,10 +3,12 @@ package Utility;
 import Common.Invoker;
 import Common.Commands.*;
 import Common.Command;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.DatagramSocket;
+import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.util.Map;
 
@@ -16,13 +18,14 @@ import java.util.Map;
 public class ClientMain {
     public static boolean work = true; // переменная, отвечающая за выход из программы. Как только она станет false, программа завершается
     public static BufferedReader reader = null;
+    public static int port = 12345;
 
     /**
      * psvm
+     *
      * @param args аргументики
-     * @throws IOException
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         Add add = new Add();
         Average_of_distance average = new Average_of_distance();
@@ -42,13 +45,25 @@ public class ClientMain {
         Update update = new Update();
 
         reader = new BufferedReader(new InputStreamReader(System.in));
-        DatagramSocket ds = new DatagramSocket();
-        ClientReceiver.sock = ds;
-        ClientReceiver.clientport = ds.getLocalPort();
+        try {
+            DatagramSocket ds = new DatagramSocket();
+            ClientReceiver.sock = ds;
+            ClientReceiver.clientport = ds.getLocalPort();
+        } catch (SocketException e) {
+            System.out.println("Ошибка подключения. Завершение программы.");
+            System.exit(0);
+
+        }
         while (work) {
+            Map<Command, String> commandparamMap = null;
             System.out.print("Введите команду:  ");
-            String s = reader.readLine();
-            Map<Command, String> commandparamMap = Invoker.execute(s);
+            try {
+                String s = reader.readLine();
+                commandparamMap = Invoker.execute(s);
+            } catch (IOException e) {
+                System.out.println("Ошибка ввода");
+                continue;
+            }
             if (commandparamMap != null) {
                 ClientSender.send(commandparamMap);
                 try {

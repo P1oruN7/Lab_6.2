@@ -1,5 +1,7 @@
 package Utility;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.io.*;
 import java.net.*;
 import java.util.Map;
@@ -40,13 +42,13 @@ public class ClientReceiver {
                 ClientReceiver.receive();
             }
         } catch (SocketException e) {
-            e.printStackTrace();
+            System.out.println("Невозможно подключиться к серверу.");
         } catch (SocketTimeoutException e) {
             System.out.println("Возможно сервер занят или выключен,попробуйте ещё раз.");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Ошибка ввода-вывода.");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Невозможно преобразовать данные, присланные сервером");
         }
     }
 }

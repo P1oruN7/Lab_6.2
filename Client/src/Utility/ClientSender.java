@@ -19,7 +19,7 @@ public class ClientSender {
             Map<Integer, Object> map = new HashMap<Integer, Object>();
             DatagramChannel datagramChannel = DatagramChannel.open();
             datagramChannel.bind(null);
-            SocketAddress serverAddress = new InetSocketAddress(InetAddress.getLocalHost(), 12345);
+            SocketAddress serverAddress = new InetSocketAddress(InetAddress.getLocalHost(), ClientMain.port);
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
             map.put(ClientReceiver.clientport, o);
@@ -32,7 +32,7 @@ public class ClientSender {
             datagramChannel.send(ByteBuffer.wrap(buff), serverAddress);
             datagramChannel.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Ошибка данных.");
         }
     }
 }
