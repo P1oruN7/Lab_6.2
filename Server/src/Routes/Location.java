@@ -13,7 +13,7 @@ public class Location implements Serializable {
     private Double y; //Поле не может быть null
     private String name; //Поле не может быть null
 
-    public Location() { };
+    public Location() {}
 
     /**
      * Конструктор
@@ -63,5 +63,4 @@ public class Location implements Serializable {
                 ", name = " + name +
                 ')';
     }
-
 }
