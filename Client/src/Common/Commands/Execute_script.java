@@ -2,12 +2,11 @@ package Common.Commands;
 
 import Common.Command;
 import Common.Invoker;
-import Readers.CommandArgumentSplitter;
 import Readers.ConsoleSourceReader;
 import Readers.FileSourceReader;
+import Utility.ClientMain;
 import Utility.ClientReceiver;
 import Utility.ClientSender;
-
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -18,7 +17,6 @@ import java.nio.channels.DatagramChannel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Команда "СКРИПТ"
@@ -58,7 +56,6 @@ public class Execute_script implements Command {
             usedFiles.add(s2);
             try {
                 FileSourceReader fileSourceReader = new FileSourceReader(s2);
-                //String[] s;
                 String line;
                 line = fileSourceReader.getLine();
                 while (fileWork && line != null) {
@@ -126,13 +123,14 @@ public class Execute_script implements Command {
                             try {
                                 DatagramChannel datagramChannel = DatagramChannel.open();
                                 datagramChannel.bind(null);
-                                SocketAddress serverAddress = new InetSocketAddress(InetAddress.getLocalHost(), 12345);
+                                SocketAddress serverAddress = new InetSocketAddress(InetAddress.getLocalHost(), ClientMain.port);
                                 byte[] buff = s1.getBytes();
                                 datagramChannel.configureBlocking(false);
                                 datagramChannel.send(ByteBuffer.wrap(buff), serverAddress);
                                 datagramChannel.close();
                             } catch (IOException e) {
-                                e.printStackTrace();
+                                System.out.println("Невозможно соедениться с сервером.");
+                                return;
                             }
                             ClientReceiver.receive();
                         }
