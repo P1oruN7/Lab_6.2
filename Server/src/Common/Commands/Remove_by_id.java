@@ -10,6 +10,8 @@ import Utility.ServerSender;
  * Команда "УДОЛИ!"
  */
 public class Remove_by_id implements Command {
+    private static final long serialVersionUID = 6529685098267757690L;
+
     /**
      * метод удаления элемента коллекции по его id
      */

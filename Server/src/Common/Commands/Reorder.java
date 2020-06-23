@@ -10,6 +10,8 @@ import java.util.Collections;
  * Команда "ПЕРЕВЁРТЫШ"
  */
 public class Reorder implements Command {
+    private static final long serialVersionUID = 6529685098267757690L;
+
     /**
      * Метод для разворота коллекции
      */

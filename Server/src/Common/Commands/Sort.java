@@ -10,6 +10,8 @@ import java.util.Collections;
  * Команда "СОРТИРОВКА"
  */
 public class Sort implements Command {
+    private static final long serialVersionUID = 6529685098267757690L;
+
     /**
      * Метод для сортировки коллекции в ествественном порядке (по возрастанию id)
      */
