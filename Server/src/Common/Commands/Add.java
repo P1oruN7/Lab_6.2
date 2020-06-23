@@ -19,6 +19,7 @@ public class Add implements Command {
 
     /**
      * Метод для добавления новых элементов в коллекцию
+     *
      * @param string строка с полями объекта route
      */
     @Override
@@ -48,6 +49,7 @@ public class Add implements Command {
 
     /**
      * Метод для создания строки
+     *
      * @return строка
      */
     public static String makeString() {
@@ -84,7 +86,6 @@ public class Add implements Command {
      */
     protected static void addDist() {
     }
-
 
 
     @Override
