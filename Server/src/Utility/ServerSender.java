@@ -15,14 +15,13 @@ import java.util.Map;
 public class ServerSender {
     /**
      * Отправить
-     * @param message сообщенька
+     *
+     * @param message    сообщенька
      * @param needAnswer нужет ли ответ от клиента
      */
     public static void send(String message, Integer needAnswer) {
         try {
-            //Параметр needAnswer имеет 3 значения
-            //(0 - ответ от клиента не ожидается,Готов делать след команду.)
-            //1 - Необходим ответ от клиента,делать след команду не готов
+            //Параметр needAnswer: 0 - ответ не нужен, 1 - ждём ответа
             Map<String, Integer> answer = new HashMap<>();
             answer.put(message, needAnswer);
             Object o = answer;

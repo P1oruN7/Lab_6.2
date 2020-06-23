@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- *  Класс - обработчик сигналов с консоли сервера
+ * Класс - обработчик сигналов с консоли сервера
  */
 public class InputString extends Thread {
 

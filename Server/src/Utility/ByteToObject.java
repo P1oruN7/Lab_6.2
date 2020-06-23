@@ -12,6 +12,7 @@ public class ByteToObject {
 
     /**
      * Перевод байтив в объект
+     *
      * @param buf массив байтиков
      */
     public static Object Cast(byte[] buf) {

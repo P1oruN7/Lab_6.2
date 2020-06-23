@@ -11,6 +11,7 @@ import java.nio.channels.DatagramChannel;
 public class ServerReceiver {
     /**
      * Получить
+     *
      * @return массивчик байтиков
      */
     public static byte[] receive() {
