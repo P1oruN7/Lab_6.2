@@ -1,6 +1,5 @@
 package Common;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 /**
@@ -11,9 +10,8 @@ public interface Command extends Serializable {
      * Экзекьюте
      *
      * @param par1 the par 1
-     * @throws IOException the io exception
      */
-    abstract public void execute(String par1) throws IOException;
+    abstract public void execute(String par1);
 
     /**
      * Получить немножко информации о команде
