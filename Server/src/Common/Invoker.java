@@ -2,7 +2,6 @@ package Common;
 
 import Utility.ServerSender;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -26,7 +25,7 @@ public class Invoker {
     /**
      * Получить коллекцию команд
      *
-     * @return  map
+     * @return map
      */
     public static Map<String, Command> getCommandCollection() {
         return commands;
@@ -36,9 +35,8 @@ public class Invoker {
      * Исполнить
      *
      * @param s строчечка
-     * @throws IOException ошибочка
      */
-    public static void execute(String s) throws IOException {
+    public static void execute(String s) {
         Map<Command, String> commandStringMap = new HashMap<>();
         String name[] = s.split(" ", 1);
         Command command = commands.get(name[0]);
