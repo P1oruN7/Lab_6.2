@@ -11,7 +11,7 @@ public abstract class Reader {
 
     protected BufferedReader bufferedReader;
 
-    public abstract String getLine() throws IOException;
+    public abstract String getLine();
 
     public void close() {
         try {

@@ -22,5 +22,4 @@ public class ConsoleSourceReader extends Reader {
             return null;
         }
     }
-
 }
