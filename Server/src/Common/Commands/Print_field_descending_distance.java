@@ -18,23 +18,15 @@ public class Print_field_descending_distance implements Command {
      */
     @Override
     public void execute(String S) {
-        if (!Utility.ServerMain.c.Routes.isEmpty()) {
-            float[] array = new float[Utility.ServerMain.c.Routes.size()]; // создаётся массив размером с коллекцию
-            int i = 0;
-            for (Route r : Utility.ServerMain.c.Routes) {
-                if (r.getDistance() != null) array[i] = r.getDistance(); // в массив вносятся значения distance
-                i++;
-            }
-
-            Arrays.sort(array); // массив сортируется в порядке возрастания
-            Float f;
-            for (i = Utility.ServerMain.c.Routes.size() - 1; i >= 0; i--) {
-                f = array[i];
-                ServerSender.send(f.toString(), 0); // массив выводится в обратном порядке
-            }
+        if (!ServerMain.c.Routes.isEmpty()) {
+            ServerSender.send("Значения distance: ", 0);
+            ServerMain.c.Routes.stream()
+                    .sorted((o1,o2) -> -o1.getDistance().compareTo(o2.getDistance()))
+                    .mapToDouble(Route::getDistance)
+                    .forEach(x -> ServerSender.send(Double.toString(x), 0));
         } else ServerSender.send("Коллекция пуста, в отличие от моего рабочего стола.", 0);
     }
-
+    
     @Override
     public String getInfo() {
         return "print_field_descending_distance: вывести значение поля distance в порядке убывания.";
