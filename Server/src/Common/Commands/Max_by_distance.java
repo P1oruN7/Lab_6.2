@@ -16,21 +16,13 @@ public class Max_by_distance implements Command {
      */
     @Override
     public void execute(String s) {
-        boolean first = true;
         if (ServerMain.c.Routes.size() > 0) {
-            Route maxRoutebyDist = null;
-            for (Route r : ServerMain.c.Routes) {
-                if (r.getDistance() != null & first) {
-                    maxRoutebyDist = r;
-                    first = false;
-                }
-                if (r.getDistance() != null) {
-                    if (r.getDistance() > maxRoutebyDist.getDistance()) maxRoutebyDist = r;
-                }
-            }
-            ServerSender.send("\n \n" + maxRoutebyDist + "\n \n", 0);
+            Route maxRouteByDistance = ServerMain.c.Routes.stream()
+                    .max((p1, p2) -> p1.getDistance().compareTo(p2.getDistance()))
+                    .get();
+            ServerSender.send("\n \n" + maxRouteByDistance + "\n \n", 0);
         } else
-            ServerSender.send("\nКоллекция пуста как моё сердце \n \n", 0);
+            ServerSender.send("\n Коллекция пуста как моё сердце \n \n", 0);
     }
 
     @Override
