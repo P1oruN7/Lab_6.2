@@ -19,7 +19,7 @@ public class ClientSender {
             Map<Integer, Object> map = new HashMap<Integer, Object>();
             DatagramChannel datagramChannel = DatagramChannel.open();
             datagramChannel.bind(null);
-            SocketAddress serverAddress = new InetSocketAddress(InetAddress.getLocalHost(), ClientMain.port);
+            SocketAddress serverAddress = new InetSocketAddress(ClientMain.address, ClientMain.port);
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
             map.put(ClientReceiver.clientport, o);

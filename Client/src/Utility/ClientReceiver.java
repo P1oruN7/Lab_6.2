@@ -1,7 +1,5 @@
 package Utility;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.io.*;
 import java.net.*;
 import java.util.Map;
@@ -36,9 +34,6 @@ public class ClientReceiver {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 String s = reader.readLine();
                 ClientSender.send(s);
-                ClientReceiver.receive();
-            } else if (answer.entrySet().iterator().next().getValue() == 2) {
-                System.out.println("Ответ с сервера: " + answer.entrySet().iterator().next().getKey());
                 ClientReceiver.receive();
             }
         } catch (SocketException e) {

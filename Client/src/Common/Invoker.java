@@ -2,6 +2,7 @@ package Common;
 
 import Common.Commands.Add;
 import Common.Commands.History;
+import Utility.ClientMain;
 import Utility.ClientReceiver;
 import Utility.ClientSender;
 
@@ -44,6 +45,7 @@ public class Invoker {
      * @param s строчечка
      */
     public static Map<Command, String> execute(String s) {
+        if (s == null ) return null;
         try {
             Map<Command, String> commandStringMap = new HashMap<>();
             String name[] = s.split(" ", 2);
@@ -90,7 +92,7 @@ public class Invoker {
                     try {
                         DatagramChannel datagramChannel = DatagramChannel.open();
                         datagramChannel.bind(null);
-                        SocketAddress serverAddress = new InetSocketAddress(InetAddress.getLocalHost(), 12345);
+                        SocketAddress serverAddress = new InetSocketAddress(ClientMain.address, ClientMain.port);
                         byte[] buff = s1.getBytes();
                         datagramChannel.configureBlocking(false);
                         datagramChannel.send(ByteBuffer.wrap(buff), serverAddress);

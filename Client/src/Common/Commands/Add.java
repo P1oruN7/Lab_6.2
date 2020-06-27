@@ -89,6 +89,8 @@ public class Add implements Command {
             hasName = true;
         } catch (IOException e) {
             System.out.println("Ошибка ввода.");
+        } catch (Exception e ) {
+            return;
         }
     }
     /**
@@ -132,7 +134,9 @@ public class Add implements Command {
         }
          catch (IOException e ) {
                 System.out.println("Ошибка ввода.");
-            }
+            } catch (Exception e ) {
+            return;
+        }
     }
 
     /**
@@ -185,6 +189,8 @@ public class Add implements Command {
         }
         catch (IOException e ) {
             System.out.println("Ошибка ввода.");
+        } catch (Exception e ) {
+            return;
         }
     }
 
@@ -229,6 +235,8 @@ public class Add implements Command {
         }
         catch (IOException e ) {
             System.out.println("Ошибка ввода.");
+        } catch (Exception e ) {
+            return;
         }
     }
 
@@ -259,6 +267,8 @@ public class Add implements Command {
             hasDist = true;
         } catch (IOException e ) {
             System.out.println("Ошибка ввода.");
+        } catch (Exception e ) {
+            return;
         }
     }
 
@@ -313,12 +323,16 @@ public class Add implements Command {
      * @param s строка
      */
     protected static void addName(String s) {
-        String name = s;
-        if (name.equals("")) {
+        try {
+            String name = s;
+            if (name.equals("")) {
+                return;
+            }
+            Add.name = name;
+            hasName = true;
+        } catch (Exception e ) {
             return;
         }
-        Add.name = name;
-        hasName = true;
     }
 
     /**
@@ -328,30 +342,32 @@ public class Add implements Command {
      * @param s1 координата Y
      */
     protected static void addCoordinates(String s0, String s1) {
-
-        Integer coordinateX;
         try {
-            coordinateX = Checker.intChecker(s0);
-        } catch (NullPointerException e) {
+            Integer coordinateX;
+            try {
+                coordinateX = Checker.intChecker(s0);
+            } catch (NullPointerException e) {
+                return;
+            }
+            if ((int) coordinateX <= -836) {
+                return;
+            }
+            Float coordinateY;
+            try {
+                coordinateY = Checker.floatChecker(s1);
+            } catch (NullPointerException e) {
+                return;
+            }
+            if ((float) coordinateY >= 840) {
+                return;
+            }
+            Add.coordinateX = coordinateX.toString();
+            Add.coordinateY = coordinateY.toString();
+            hasCoordinates = true;
+        } catch (Exception e) {
             return;
         }
-        if ((int) coordinateX <= -836) {
-            return;
-        }
-        Float coordinateY;
-        try {
-            coordinateY = Checker.floatChecker(s1);
-        } catch (NullPointerException e) {
-            return;
-        }
-        if ((float) coordinateY >= 840) {
-            return;
-        }
-        Add.coordinateX = coordinateX.toString();
-        Add.coordinateY = coordinateY.toString();
-        hasCoordinates = true;
     }
-
     /**
      * Метод добавления поля from в элемент
      *
@@ -360,36 +376,40 @@ public class Add implements Command {
      * @param s2 Loc From Name
      */
     protected static void addFrom(String s0, String s1, String s2) {
-        if (s0.toLowerCase().trim().equals("null") | s0.toLowerCase().trim().equals("")) {
-            hasFrom = true;
-            return;
-        }
-        Long locationFromX;
         try {
-            locationFromX = Checker.longChecker(s0);
-        } catch (NullPointerException e) {
-            return;
-        }
+            if (s0.toLowerCase().trim().equals("null") | s0.toLowerCase().trim().equals("")) {
+                hasFrom = true;
+                return;
+            }
+            Long locationFromX;
+            try {
+                locationFromX = Checker.longChecker(s0);
+            } catch (NullPointerException e) {
+                return;
+            }
 
-        Double locationFromY;
-        if (s1.toLowerCase().trim().equals("null") | s1.toLowerCase().trim().equals("")) {
-            hasFrom = true;
-            return;
-        }
-        try {
-            locationFromY = Checker.doubleChecker(s1);
-        } catch (NullPointerException e) {
-            return;
-        }
+            Double locationFromY;
+            if (s1.toLowerCase().trim().equals("null") | s1.toLowerCase().trim().equals("")) {
+                hasFrom = true;
+                return;
+            }
+            try {
+                locationFromY = Checker.doubleChecker(s1);
+            } catch (NullPointerException e) {
+                return;
+            }
 
-        if (s2.trim().equals("")) {
+            if (s2.trim().equals("")) {
+                hasFrom = true;
+                return;
+            }
+            Add.LocationFromX = locationFromX.toString();
+            Add.LocationFromY = locationFromY.toString();
+            Add.LocationFromName = s2;
             hasFrom = true;
+        } catch (Exception e) {
             return;
         }
-        Add.LocationFromX = locationFromX.toString();
-        Add.LocationFromY = locationFromY.toString();
-        Add.LocationFromName = s2;
-        hasFrom = true;
     }
 
     /**
@@ -400,34 +420,38 @@ public class Add implements Command {
      * @param s2 Loc To Name
      */
     protected static void addTo(String s0, String s1, String s2) {
-        if (s0.trim().equals("")) {
-            return;
-        }
-        Long locationToX;
         try {
-            locationToX = Checker.longChecker(s0);
-        } catch (NullPointerException e) {
-            return;
-        }
+            if (s0.trim().equals("")) {
+                return;
+            }
+            Long locationToX;
+            try {
+                locationToX = Checker.longChecker(s0);
+            } catch (NullPointerException e) {
+                return;
+            }
 
-        Double locationToY;
-        if (s1.trim().equals("")) {
-            return;
-        }
-        try {
-            locationToY = Checker.doubleChecker(s1);
-        } catch (NullPointerException e) {
-            return;
-        }
+            Double locationToY;
+            if (s1.trim().equals("")) {
+                return;
+            }
+            try {
+                locationToY = Checker.doubleChecker(s1);
+            } catch (NullPointerException e) {
+                return;
+            }
 
-        if (s2.trim().equals("")) {
+            if (s2.trim().equals("")) {
+                return;
+            }
+            Add.LocationToX = locationToX.toString();
+            Add.LocationToY = locationToY.toString();
+            Add.LocationToName = s2;
+            hasTo = true;
+
+        } catch (Exception e) {
             return;
         }
-        Add.LocationToX = locationToX.toString();
-        Add.LocationToY = locationToY.toString();
-        Add.LocationToName = s2;
-        hasTo = true;
-
     }
 
     /**
@@ -436,20 +460,24 @@ public class Add implements Command {
      * @param s собсна строчечка со значением dist
      */
     protected static void addDist(String s) {
-        if (s.trim().equals("") | s.toLowerCase().trim().equals("null")) {
-            hasDist = true;
-            return;
-        }
-        Float distance;
         try {
-            distance = Checker.floatChecker(s);
-        } catch (NullPointerException e) {
+            if (s.trim().equals("") | s.toLowerCase().trim().equals("null")) {
+                hasDist = true;
+                return;
+            }
+            Float distance;
+            try {
+                distance = Checker.floatChecker(s);
+            } catch (NullPointerException e) {
+                return;
+            }
+            if (!(distance > 1)) {
+                return;
+            }
+            Add.distance = distance.toString();
+            hasDist = true;
+        } catch (Exception e) {
             return;
         }
-        if (!(distance > 1)) {
-            return;
-        }
-        Add.distance = distance.toString();
-        hasDist = true;
     }
 }
