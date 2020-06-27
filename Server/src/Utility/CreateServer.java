@@ -15,21 +15,17 @@ public class CreateServer {
     /**
      * Создание сервера
      */
-    public static void create() {
+    public static boolean create() {
         try {
-            SocketAddress it = new InetSocketAddress(InetAddress.getLocalHost(), 12345);
+            SocketAddress it = new InetSocketAddress(InetAddress.getLocalHost(), ServerMain.port);
             DatagramChannel dc = DatagramChannel.open();
             dc.configureBlocking(false);
-            try {
-                dc.bind(it);
-            } catch (BindException e) {
-                System.out.println("Данный порт уже занят,возможно сервер уже запущен.\n Принудительно завершаю работу.");
-                System.exit(0);
-            }
+            dc.bind(it);
             datagramChannel = dc;
-        } catch (IOException e) {
-            System.out.println("Ошибка создания сервера. Он не может работать из-за ошибок ввода-вывода.");
-            System.exit(0);
+        } catch (IOException | java.lang.IllegalArgumentException e) {
+            System.out.println("Данный порт не может быть использован.");
+            return false;
         }
+        return true;
     }
 }

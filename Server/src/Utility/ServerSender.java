@@ -3,9 +3,7 @@ package Utility;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
+import java.net.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +32,9 @@ public class ServerSender {
             objectOutputStream.close();
             byte[] buff = byteArrayOutputStream.toByteArray();
             DatagramSocket datagramSocket = new DatagramSocket();
+           // ServerMain.clientAdderss = datagramSocket.getInetAddress(); //
+          //  ServerMain.clientAdderss =  CreateServer.datagramChannel.getRemoteAddress();
+         //   DatagramPacket dp = new DatagramPacket(buff, buff.length, ServerMain.clientAdderss);
             DatagramPacket dp = new DatagramPacket(buff, buff.length, InetAddress.getLocalHost(), CreateServer.currentClientPort);
             datagramSocket.send(dp);
             datagramSocket.close();

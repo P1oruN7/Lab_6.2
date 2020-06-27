@@ -1,7 +1,6 @@
 package Utility;
 
-import Common.Commands.Exit;
-
+import Common.Commands.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,11 +17,13 @@ public class InputString extends Thread {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Common.Commands.Save saveCommand = new Common.Commands.Save();
         Exit exit = new Exit();
+        Help help = new Help();
         try {
             while (true) {
                 System.out.print("Введите команду для сервера: ");
                 String s = reader.readLine();
-                switch (s.trim()) {
+                if (s == null | s.trim().equals("")) continue;
+                switch (s.trim().toLowerCase()) {
                     case "save":
                         System.out.println("Пытаюсь сохранянить");
                         saveCommand.execute(null);
@@ -33,6 +34,12 @@ public class InputString extends Thread {
                         exit.execute("NotNull");
                         System.out.println("Выход");
                         break;
+                    case "help":
+                        System.out.println("Список всех доступных команд:\n   " +
+                                saveCommand.getInfo() +
+                                "\n   " + exit.getInfo() +
+                                "\n   " + help.getInfo()
+                        );
                 }
             }
         } catch (IOException e) {
