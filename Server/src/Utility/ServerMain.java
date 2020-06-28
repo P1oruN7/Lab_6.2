@@ -64,7 +64,7 @@ public class ServerMain {
             path = bufferReader.getLine() + "";
             if (path.equals("")) {
                 path = "resources/input.xml";
-                System.out.println("Вы начали работу с коллекцией по умолчанию. Если хотите увидеть ее элементы, введите \"show\"");
+                System.out.println("Вы начали работу с коллекцией по умолчанию.");
             }
 
             c = XmlReader.getCollection(path);
