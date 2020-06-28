@@ -19,8 +19,12 @@ public class Show implements Command {
         if (ServerMain.c.Routes.size() == 0) {
             ServerSender.send("\n\nКоллекция пуста, милорд\n\n", 0);
         } else {
-            ServerMain.c.Routes.stream()
-                    .forEachOrdered(x -> ServerSender.send(x.toString(), 0));
+            String string = "\n";
+            for (Route r : ServerMain.c.Routes) {
+                string += "  " + r.toString() + "\n";
+            }
+            ServerSender.send(string, 0);
+
         }
     }
 
