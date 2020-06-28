@@ -90,6 +90,7 @@ public class Add implements Command {
         } catch (IOException e) {
             System.out.println("Ошибка ввода.");
         } catch (Exception e ) {
+            System.out.println("Ошибка ввода. Попробуйте ещё разок.");
             return;
         }
     }
@@ -100,7 +101,7 @@ public class Add implements Command {
         try {
             System.out.print("\n" + "Координаты, пожалуйста." + "\n" + "int X = ");
             String s = Utility.ClientMain.reader.readLine() + "";
-            if (s.equals("")) {
+            if (s.equals("") | s == null) {
                 System.out.println("Введена пустая строка. Не надо так.");
                 return;
             }
@@ -119,7 +120,12 @@ public class Add implements Command {
             System.out.print("float Y = ");
             Float coordinateY;
             try {
-                coordinateY = Checker.floatChecker(Utility.ClientMain.reader.readLine());
+                s = Utility.ClientMain.reader.readLine();
+                if (s.equals("") | s == null) {
+                    System.out.println("Введена пустая строка. Не надо так.");
+                    return;
+                }
+                coordinateY = Checker.floatChecker(s);
             } catch (NullPointerException e) {
                 System.out.println("Неправильный тип. Coordinate Y должно быть типа float" + "\n Попробуем ещё разок!");
                 return;
@@ -135,6 +141,7 @@ public class Add implements Command {
          catch (IOException e ) {
                 System.out.println("Ошибка ввода.");
             } catch (Exception e ) {
+            System.out.println("Ошибка ввода. Попробуйте ещё разок.");
             return;
         }
     }
@@ -147,7 +154,7 @@ public class Add implements Command {
             System.out.print("\n" + "Откуда? (from)" + "\n" + "long x = ");
 
             String s = Utility.ClientMain.reader.readLine() + "";
-            if (s.equals("")) {
+            if (s.equals("") | s == null) {
                 System.out.println("LocationFrom = null.");
                 hasFrom = true;
                 return;
@@ -163,7 +170,7 @@ public class Add implements Command {
             System.out.print("double y = ");
             Double locationFromY;
             s = Utility.ClientMain.reader.readLine() + "";
-            if (s.equals("")) {
+            if (s.equals("") | s == null) {
                 System.out.println("LocationFrom = null.");
                 hasFrom = true;
                 return;
@@ -177,7 +184,7 @@ public class Add implements Command {
 
             System.out.print("Имя откуда:  ");
             String locationFromName = Utility.ClientMain.reader.readLine() + "";
-            if (locationFromName.equals("")) {
+            if (locationFromName.equals("") | locationFromName == null) {
                 System.out.println("LocationFrom = null.");
                 hasFrom = true;
                 return;
@@ -190,6 +197,7 @@ public class Add implements Command {
         catch (IOException e ) {
             System.out.println("Ошибка ввода.");
         } catch (Exception e ) {
+            System.out.println("Ошибка ввода. Попробуйте ещё разок.");
             return;
         }
     }
@@ -241,6 +249,7 @@ public class Add implements Command {
         catch (IOException e ) {
             System.out.println("Ошибка ввода.");
         } catch (Exception e ) {
+            System.out.println("Ошибка ввода. Попробуйте ещё разок.");
             return;
         }
     }
@@ -273,6 +282,7 @@ public class Add implements Command {
         } catch (IOException e ) {
             System.out.println("Ошибка ввода.");
         } catch (Exception e ) {
+            System.out.println("Ошибка ввода. Попробуйте ещё разок.");
             return;
         }
     }
