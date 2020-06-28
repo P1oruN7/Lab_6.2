@@ -18,7 +18,7 @@ public class Sort implements Command {
     @Override
     public void execute(String S) {
         Collections.sort(ServerMain.c.Routes);
-        ServerSender.send("\n\nКоллекция была отсортирована по возрастанию id\n\n", 0);
+        ServerSender.send("\n\nКоллекция была отсортирована.\n\n", 0);
     }
 
     @Override
