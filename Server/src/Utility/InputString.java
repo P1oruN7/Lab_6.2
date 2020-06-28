@@ -18,8 +18,8 @@ public class InputString extends Thread {
         Common.Commands.Save saveCommand = new Common.Commands.Save();
         Exit exit = new Exit();
         Help help = new Help();
-        try {
-            while (true) {
+        while (true) {
+            try {
                 System.out.print("Введите команду для сервера: ");
                 String s = reader.readLine();
                 if (s == null | s.trim().equals("")) continue;
@@ -41,11 +41,11 @@ public class InputString extends Thread {
                                 "\n   " + help.getInfo()
                         );
                 }
+            } catch (IOException e) {
+                System.out.println("Ошибка ввода");
+            } catch (Exception e) {
+                continue;
             }
-        } catch (IOException e) {
-            System.out.println("Ошибка ввода");
-        } catch (Exception e) {
-            
         }
     }
 }
