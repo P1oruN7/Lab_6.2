@@ -100,10 +100,12 @@ public class Route implements Comparable<Route>, Serializable {
 
     @Override
     public int compareTo(Route r) {
-        if (this.getId() == r.getId()) {
+        if (this.getId().equals(r.getId())) {    //сравнение на одинаковость  id
             return 0;
-        } else if (this.getId() > r.getId()) {
-            return 1;
-        } else return -1;
+        } else if (this.getName().toLowerCase().equals( r.getName().toLowerCase())){ //сравнение на одинаковость имён
+            if(this.getId() > r.getId()) return 1;  // при одинаковых именах сравнение по ID
+            else return -1; // при одинаковых именах сравнение по ID
+        } else return this.getName().toLowerCase().compareTo(r.getName().toLowerCase()); // сранение по имени
+
     }
 }
