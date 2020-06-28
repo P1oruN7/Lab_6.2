@@ -17,8 +17,13 @@ public class Max_by_distance implements Command {
     @Override
     public void execute(String s) {
         if (ServerMain.c.Routes.size() > 0) {
+            double[] d = {0, 0};
             Route maxRouteByDistance = ServerMain.c.Routes.stream()
-                    .max((p1, p2) -> p1.getDistance().compareTo(p2.getDistance()))
+                    .max((p1, p2) -> {
+                        if (p1.getDistance() == null) d[0] = 0; else d[0] = p1.getDistance();
+                        if (p2.getDistance() == null) d[1] = 0; else d[1] = p2.getDistance();
+                        return Double.compare(d[0],d[1]);
+                    })
                     .get();
             ServerSender.send("\n \n" + maxRouteByDistance + "\n \n", 0);
         } else
