@@ -21,11 +21,6 @@ import java.io.File;
  */
 public class ServerMain {
 
-
-
-
-
-
     public static Collection c = null;
     public static Integer port;
     public static SocketAddress clientAdderss;
@@ -116,7 +111,7 @@ public class ServerMain {
             commandStringMap.entrySet().iterator().next().getKey().execute(commandStringMap.entrySet().iterator().next().getValue());
             CreateServer.serverIsAvaible = true;
             if (!commandStringMap.entrySet().iterator().next().getKey().getClass().getName().equals("Common.Commands.Exit"))
-                System.out.println("\nКоманда выполнена! Отправляю результат клиенту с портом " + CreateServer.currentClientPort + ".");
+                System.out.println("\nКоманда выполнена! Отправляю результат клиенту.");
         } catch (ClassCastException e) {
             ServerSender.send("\nСообщение от Сервера:\"Возникли небольшие неполадки с вашим подключением,но сейчас всё по кайфу,ожидаю команд.\"\n", 0);
         }
