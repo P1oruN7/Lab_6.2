@@ -44,6 +44,8 @@ public class InputString extends Thread {
             }
         } catch (IOException e) {
             System.out.println("Ошибка ввода");
+        } catch (Exception e) {
+            
         }
     }
 }
