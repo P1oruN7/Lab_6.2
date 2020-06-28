@@ -80,7 +80,7 @@ public class Add implements Command {
     protected static void addName() {
         try {
             System.out.print("\n" + "Как вы хотите, чтобы его звали?  ");
-            String name = Utility.ClientMain.reader.readLine() + "";
+            String name = Utility.ClientMain.reader.readLine() ;
             if (name.equals("") | name == null) {
                 System.out.println("Пустая строка ни к чему не приведёт. Пока ты смотришь в пустую строку, пустая строка смотрит в тебя...");
                 return;
@@ -104,7 +104,7 @@ public class Add implements Command {
     protected static void addCoordinates() {
         try {
             System.out.print("\n" + "Координаты, пожалуйста." + "\n" + "int X = ");
-            String s = Utility.ClientMain.reader.readLine() + "";
+            String s = Utility.ClientMain.reader.readLine() ;
             if (s.equals("") | s == null) {
                 System.out.println("Введена пустая строка. Не надо так.");
                 return;
@@ -157,7 +157,7 @@ public class Add implements Command {
         try {
             System.out.print("\n" + "Откуда? (from)" + "\n" + "long x = ");
 
-            String s = Utility.ClientMain.reader.readLine() + "";
+            String s = Utility.ClientMain.reader.readLine();
             if (s.equals("") | s == null) {
                 System.out.println("LocationFrom = null.");
                 hasFrom = true;
@@ -173,7 +173,7 @@ public class Add implements Command {
 
             System.out.print("double y = ");
             Double locationFromY;
-            s = Utility.ClientMain.reader.readLine() + "";
+            s = Utility.ClientMain.reader.readLine();
             if (s.equals("") | s == null) {
                 System.out.println("LocationFrom = null.");
                 hasFrom = true;
@@ -187,7 +187,7 @@ public class Add implements Command {
             }
 
             System.out.print("Имя откуда:  ");
-            String locationFromName = Utility.ClientMain.reader.readLine() + "";
+            String locationFromName = Utility.ClientMain.reader.readLine();
             if (locationFromName.trim().equals("") | locationFromName == null) {
                 System.out.println("LocationFrom = null.");
                 hasFrom = true;
@@ -216,7 +216,7 @@ public class Add implements Command {
     protected static void addTo() {
         try {
             System.out.print("\n" + "Куда? (to)" + "\n" + "long x = ");
-            String s = Utility.ClientMain.reader.readLine() + "";
+            String s = Utility.ClientMain.reader.readLine();
             if (s.equals("") | s == null) {
                 System.out.println("Введена пустая строка. Не надо так.");
                 return;
@@ -244,7 +244,7 @@ public class Add implements Command {
             }
 
             System.out.print("Имя куда:  ");
-            String locationToName = Utility.ClientMain.reader.readLine() + "";
+            String locationToName = Utility.ClientMain.reader.readLine();
             if (locationToName.equals("") | s == null) {
                 System.out.println("Пустая строка ни к чему не приведёт. Пока ты смотришь в пустую строку, пустая строка смотрит в тебя...");
                 return;
@@ -272,7 +272,7 @@ public class Add implements Command {
     protected static void addDist() {
         try {
             System.out.print("\n" + "Давай посмотрим, что у нас там с Distance. (float)  ");
-            String s = Utility.ClientMain.reader.readLine() + "";
+            String s = Utility.ClientMain.reader.readLine();
             if (s.equals("") | s == null) {
                 System.out.println("Теперь distance = null");
                 hasDist = true;
@@ -352,7 +352,7 @@ public class Add implements Command {
     protected static void addName(String s) {
         try {
             String name = s;
-            if (name.equals("") | name == null) {
+            if (name.trim().equals("") | name == null) {
                 return;
             }
             if (name.trim().split(" ").length !=1 ) {
