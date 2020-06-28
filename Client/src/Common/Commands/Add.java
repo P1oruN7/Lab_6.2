@@ -325,7 +325,7 @@ public class Add implements Command {
     protected static void addName(String s) {
         try {
             String name = s;
-            if (name.equals("")) {
+            if (name.equals("") | name == null) {
                 return;
             }
             Add.name = name;
