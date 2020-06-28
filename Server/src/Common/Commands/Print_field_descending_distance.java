@@ -19,11 +19,17 @@ public class Print_field_descending_distance implements Command {
     @Override
     public void execute(String S) {
         if (!ServerMain.c.Routes.isEmpty()) {
-            ServerSender.send("Значения distance: ", 0);
+            String[] q = {"\n"};
             ServerMain.c.Routes.stream()
-                    .sorted((o1,o2) -> -o1.getDistance().compareTo(o2.getDistance()))
-                    .mapToDouble(Route::getDistance)
-                    .forEach(x -> ServerSender.send(Double.toString(x), 0));
+                        .map(Route::getDistance)
+                        .mapToDouble( (t) -> {
+                           if ((t)==null) (t) = Float.valueOf(0);
+                          return (t); })
+                        .map((t) -> 0-t)
+                        .sorted()
+                        .map((t) -> 0-t)
+                        .forEachOrdered(x -> q[0] += Double.toString(x) + "\n");
+            ServerSender.send("Значения distance: " + q[0], 0);
         } else ServerSender.send("Коллекция пуста, в отличие от моего рабочего стола.", 0);
     }
     
