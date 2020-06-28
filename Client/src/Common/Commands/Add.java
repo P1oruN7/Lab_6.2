@@ -85,7 +85,11 @@ public class Add implements Command {
                 System.out.println("Пустая строка ни к чему не приведёт. Пока ты смотришь в пустую строку, пустая строка смотрит в тебя...");
                 return;
             }
-            Add.name = name;
+            if (name.trim().split(" ").length !=1 ) {
+                System.out.println("Имя должно состоять из одного слова.");
+                return;
+            }
+            Add.name = name.trim();
             hasName = true;
         } catch (IOException e) {
             System.out.println("Ошибка ввода.");
@@ -184,14 +188,18 @@ public class Add implements Command {
 
             System.out.print("Имя откуда:  ");
             String locationFromName = Utility.ClientMain.reader.readLine() + "";
-            if (locationFromName.equals("") | locationFromName == null) {
+            if (locationFromName.trim().equals("") | locationFromName == null) {
                 System.out.println("LocationFrom = null.");
                 hasFrom = true;
                 return;
             }
+            if (locationFromName.trim().split(" ").length !=1 ) {
+                System.out.println("Имя должно состоять из одного слова.");
+                return;
+            }
             Add.LocationFromX = locationFromX.toString();
             Add.LocationFromY = locationFromY.toString();
-            Add.LocationFromName = locationFromName;
+            Add.LocationFromName = locationFromName.trim();
             hasFrom = true;
         }
         catch (IOException e ) {
@@ -241,9 +249,13 @@ public class Add implements Command {
                 System.out.println("Пустая строка ни к чему не приведёт. Пока ты смотришь в пустую строку, пустая строка смотрит в тебя...");
                 return;
             }
+            if (locationToName.trim().split(" ").length !=1 ) {
+                System.out.println("Имя должно состоять из одного слова.");
+                return;
+            }
             Add.LocationToX = locationToX.toString();
             Add.LocationToY = locationToY.toString();
-            Add.LocationToName = locationToName;
+            Add.LocationToName = locationToName.trim();
             hasTo = true;
         }
         catch (IOException e ) {
@@ -343,7 +355,11 @@ public class Add implements Command {
             if (name.equals("") | name == null) {
                 return;
             }
-            Add.name = name;
+            if (name.trim().split(" ").length !=1 ) {
+                System.out.println("Имя должно состоять из одного слова.");
+                return;
+            }
+            Add.name = name.trim();
             hasName = true;
         } catch (Exception e ) {
             return;
@@ -418,9 +434,13 @@ public class Add implements Command {
                 hasFrom = true;
                 return;
             }
+            if (s2.trim().split(" ").length !=1 ) {
+                System.out.println("Имя должно состоять из одного слова.");
+                return;
+            }
             Add.LocationFromX = locationFromX.toString();
             Add.LocationFromY = locationFromY.toString();
-            Add.LocationFromName = s2;
+            Add.LocationFromName = s2.trim();
             hasFrom = true;
         } catch (Exception e) {
             return;
@@ -459,9 +479,13 @@ public class Add implements Command {
             if (s2.trim().equals("")) {
                 return;
             }
+            if (s2.trim().split(" ").length !=1 ) {
+                System.out.println("Имя должно состоять из одного слова.");
+                return;
+            }
             Add.LocationToX = locationToX.toString();
             Add.LocationToY = locationToY.toString();
-            Add.LocationToName = s2;
+            Add.LocationToName = s2.trim();
             hasTo = true;
 
         } catch (Exception e) {
