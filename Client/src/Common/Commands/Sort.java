@@ -13,7 +13,7 @@ public class Sort implements Command {
     }
 
     /**
-     * Метод для сортировки коллекции в ествественном порядке (по возрастанию id)
+     * Метод для сортировки коллекции в ествественном порядке 
      */
     @Override
     public void execute(String S) {
