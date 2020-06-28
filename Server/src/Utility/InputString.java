@@ -40,6 +40,9 @@ public class InputString extends Thread {
                                 "\n   " + exit.getInfo() +
                                 "\n   " + help.getInfo()
                         );
+                        break;
+                    default:
+                        System.out.println("Неизвестная команда.");
                 }
             } catch (IOException e) {
                 System.out.println("Ошибка ввода");
