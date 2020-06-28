@@ -81,7 +81,7 @@ public class Add implements Command {
         try {
             System.out.print("\n" + "Как вы хотите, чтобы его звали?  ");
             String name = Utility.ClientMain.reader.readLine() + "";
-            if (name.equals("")) {
+            if (name.equals("") | name == null) {
                 System.out.println("Пустая строка ни к чему не приведёт. Пока ты смотришь в пустую строку, пустая строка смотрит в тебя...");
                 return;
             }
@@ -201,7 +201,7 @@ public class Add implements Command {
         try {
             System.out.print("\n" + "Куда? (to)" + "\n" + "long x = ");
             String s = Utility.ClientMain.reader.readLine() + "";
-            if (s.equals("")) {
+            if (s.equals("") | s == null) {
                 System.out.println("Введена пустая строка. Не надо так.");
                 return;
             }
@@ -216,7 +216,12 @@ public class Add implements Command {
             System.out.print("double y = ");
             Double locationToY;
             try {
-                locationToY = Checker.doubleChecker(Utility.ClientMain.reader.readLine());
+                s = Utility.ClientMain.reader.readLine();
+                if (s.equals("") | s == null) {
+                    System.out.println("Введена пустая строка. Не надо так.");
+                    return;
+                }
+                locationToY = Checker.doubleChecker(s);
             } catch (NullPointerException e) {
                 System.out.println("Неправильный тип. location To (Y) должно быть типа double." + "\n Попробуем ещё разок!");
                 return;
@@ -224,7 +229,7 @@ public class Add implements Command {
 
             System.out.print("Имя куда:  ");
             String locationToName = Utility.ClientMain.reader.readLine() + "";
-            if (locationToName.equals("")) {
+            if (locationToName.equals("") | s == null) {
                 System.out.println("Пустая строка ни к чему не приведёт. Пока ты смотришь в пустую строку, пустая строка смотрит в тебя...");
                 return;
             }
@@ -247,7 +252,7 @@ public class Add implements Command {
         try {
             System.out.print("\n" + "Давай посмотрим, что у нас там с Distance. (float)  ");
             String s = Utility.ClientMain.reader.readLine() + "";
-            if (s.equals("")) {
+            if (s.equals("") | s == null) {
                 System.out.println("Теперь distance = null");
                 hasDist = true;
                 return;
